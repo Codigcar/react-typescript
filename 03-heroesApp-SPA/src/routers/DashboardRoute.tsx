@@ -6,6 +6,7 @@ import { DcScreen } from '../components/dc/DcScreen';
 import { HeroScreen } from '../components/heroes/HeroScreen';
 
 export const DashboardRoute = () => {
+    /* Segundo Router */
     return (
         <>
             <Navbar/>
@@ -14,7 +15,7 @@ export const DashboardRoute = () => {
                     <Route exact path="/marvel" component={MarvelScreen} ></Route>
                     <Route exact path="/dc" component={DcScreen} ></Route> 
                     <Route exact path="/heroe/:heroeId" component={HeroScreen} ></Route>
-                    
+
                     {/* ruta x default */}
                     <Redirect to="/marvel" />
                 </Switch>
