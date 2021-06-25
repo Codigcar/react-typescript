@@ -1,6 +1,7 @@
 import React from 'react'
 import { getHeroesByPublisher } from '../../selectors/getHeroesByPublisher';
 import { getHeroById } from '../../selectors/getHeroById';
+import { HeroCard } from './HeroCard';
 
 export const HeroList = ({publisher}) => {
 
@@ -8,20 +9,18 @@ export const HeroList = ({publisher}) => {
     const heroeById = getHeroById('dc-black');
     
     return (
-        <div>
+        <div className="card-columns">
             <ul>
                 {
                     heroes.map(heroe => (
-                        <li key={heroe.id}>
-                            {heroe.superhero}
-                        </li>
+                        <HeroCard key={heroe.id} {...heroe} />
                     ))
                 }
             </ul>
             <div>
-                {
+                {/* {
                     heroeById?.id
-                }
+                } */}
             </div>
         </div>
     )
