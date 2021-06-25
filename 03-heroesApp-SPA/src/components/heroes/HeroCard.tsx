@@ -1,5 +1,6 @@
 import { stringify } from 'querystring'
 import React from 'react'
+import { Link } from 'react-router-dom';
 // type porque no se va a reutiliar ni extender, cosa contrario seria interface
 type heroType = {
     id: string;
@@ -30,6 +31,10 @@ export const HeroCard = (props:heroType) => {
                         <p className="card-text">
                             <small className="text-muted">{props.first_appearance}</small>
                         </p>
+
+                        <Link to={`./hero/${props.id}`}>
+                            Más...
+                        </Link>
                     </div>
                 </div>
             </div>
