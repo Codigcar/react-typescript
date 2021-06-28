@@ -1,18 +1,27 @@
 import React from 'react'
+// instalar: npm i query-string, usado para parsear el query del search
+import queryString from 'query-string';
+
 import { heroes_data } from '../../data/heroes'
 import { useForm } from '../../hook/useForm';
 import { HeroCard } from '../heroes/HeroCard';
 
-export const SearchScreen = () => {
+export const SearchScreen = ({history, location}) => {
+
+
+    // console.log(location.search);
+    // console.log(queryString.parse(location.search));
+    const {q=''} = queryString.parse(location.search);
 
     const heroesFiltrados = heroes_data;
-
+    
     interface DormData{
         searchText: string;
     }
 
     const initialForm = {
-        searchText:''
+        // searchText:''
+        searchText:q
     };
 
     const { formulario, handleChange } = useForm<DormData>( initialForm );
@@ -20,7 +29,8 @@ export const SearchScreen = () => {
 
     const handleSearch=(e)=>{
         e.preventDefault();
-        console.log(searchText);
+        // console.log(searchText);
+        history.push(`?q=${searchText}`);
         
     }
 
