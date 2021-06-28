@@ -8,11 +8,11 @@ export const HeroList = ({publisher}) => {
 
     // const heroes = getHeroesByPublisher(publisher);
     const heroes = useMemo(() => getHeroesByPublisher(publisher), [publisher])
-    
+
     // const heroeById = getHeroById('dc-black');
     
     return (
-        <div className="card-columns">
+        <div className="card-columns animate__animated animate__fadeInDown">
             <ul>
                 {
                     heroes.map(heroe => (
