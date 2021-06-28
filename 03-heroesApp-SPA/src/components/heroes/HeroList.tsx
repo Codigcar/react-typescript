@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { getHeroesByPublisher } from '../../selectors/getHeroesByPublisher';
-import { getHeroById } from '../../selectors/getHeroById';
+// import { getHeroById } from '../../selectors/getHeroById';
 import { HeroCard } from './HeroCard';
 
 export const HeroList = ({publisher}) => {
 
-    const heroes = getHeroesByPublisher(publisher);
-    const heroeById = getHeroById('dc-black');
+
+    // const heroes = getHeroesByPublisher(publisher);
+    const heroes = useMemo(() => getHeroesByPublisher(publisher), [publisher])
+    
+    // const heroeById = getHeroById('dc-black');
     
     return (
         <div className="card-columns">
