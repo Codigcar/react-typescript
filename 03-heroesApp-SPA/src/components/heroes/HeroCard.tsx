@@ -13,7 +13,7 @@ type heroType = {
 }
 
 export const HeroCard = (props:heroType) => {
-    console.log(props.id);
+    // console.log(props.id);
     
     return (
         <div className="card ms-3">
