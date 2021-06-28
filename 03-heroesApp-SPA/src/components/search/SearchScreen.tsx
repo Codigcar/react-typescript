@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 // instalar: npm i query-string, usado para parsear el query del search
 import queryString from 'query-string';
 
