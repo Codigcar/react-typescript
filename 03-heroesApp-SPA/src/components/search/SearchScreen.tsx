@@ -5,6 +5,8 @@ import queryString from 'query-string';
 import { heroes_data } from '../../data/heroes'
 import { useForm } from '../../hook/useForm';
 import { HeroCard } from '../heroes/HeroCard';
+import { getHeroesByName } from '../../selectors/getHeroesByName';
+import { useMemo } from 'react';
 
 export const SearchScreen = ({history, location}) => {
 
@@ -13,25 +15,29 @@ export const SearchScreen = ({history, location}) => {
     // console.log(queryString.parse(location.search));
     const {q=''} = queryString.parse(location.search);
 
-    const heroesFiltrados = heroes_data;
-    
     interface DormData{
         searchText: string;
     }
-
+    
     const initialForm = {
         // searchText:''
         searchText:q
     };
-
+    
     const { formulario, handleChange } = useForm<DormData>( initialForm );
     const {searchText} = formulario;
+    
+    // const heroesFiltrados = heroes_data;
+    // const heroesFiltrados = getHeroesByName(searchText);
+    const heroesFiltrados = useMemo(() => getHeroesByName(q), [q])
+    // Se hace uso del USEMEMO para que al cuando haya cambio de estado(escribir) no recargue automaticamente por cada letra
+    // Sino que recargue la pagina solo cuando cambia el query (palabra de busqueda y le das al boton buscar)
+
 
     const handleSearch=(e)=>{
         e.preventDefault();
         // console.log(searchText);
         history.push(`?q=${searchText}`);
-        
     }
 
     return (
@@ -51,6 +57,18 @@ export const SearchScreen = ({history, location}) => {
                 <div className="col-7">
                     <h4>Resultados</h4>
                     <hr />
+                    {
+                        (q === '') &&
+                            <div className="alert alert-info">
+                                Buscar un heroe
+                            </div>
+                    }
+                    {
+                        (q !== '' && heroesFiltrados.length === 0) &&
+                            <div className="alert alert-danger">
+                                    No hay heroe encontrado
+                            </div>
+                    }
                     {
                         heroesFiltrados.map(heroe => (
                             <HeroCard key={heroe.id} {...heroe} />
