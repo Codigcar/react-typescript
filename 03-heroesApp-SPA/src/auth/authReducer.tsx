@@ -1,4 +1,3 @@
-import { types } from "../types/types";
 import { AuthState } from './AuthContext';
 
 // Estado si el usuario se logea
@@ -33,8 +32,6 @@ export const authReducer = (state: AuthState, action: AuthAction): AuthState  =>
     switch (action.type) {
         case  'login':
             return {
-                // ...action.payload,
-                // logged: true
                 ...state,
                 logged: true,
                 name:'carlos'

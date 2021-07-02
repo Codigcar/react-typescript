@@ -18,8 +18,6 @@ export const authInitialState: AuthState = {
 }
 
 interface AuthContextProps {
-    /* name: string,
-    logged: boolean */
     authState: AuthState;
     signIn: () => void;
 }
