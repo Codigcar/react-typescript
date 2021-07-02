@@ -4,9 +4,24 @@ import { createContext } from 'react';
 //     name: 'Carlos',
 //     logged: true
 // }
-interface AuthContextProps {
-    name: string,
+
+// Definir la estructura
+export interface AuthState {
+    name?:string,
     logged: boolean
+}
+
+// Estado inicial
+export const authInitialState: AuthState = {
+    name: undefined,
+    logged: false
+}
+
+interface AuthContextProps {
+    /* name: string,
+    logged: boolean */
+    authState: AuthState;
+    signIn: () => void;
 }
 
 export const AuthContext = createContext({} as AuthContextProps);
