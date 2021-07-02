@@ -10,7 +10,7 @@ function App() {
   }
 
   // const [user, dispatch] = useReducer(authReducer, /* initialState */{}, init)
-  const [authState, dispatch] = useReducer(authReducer, authInitialState);
+  const [authState, dispatch] = useReducer(authReducer, /* authInitialState */{},init);
 
   const signIn = () => {
     dispatch({type:'login'});
