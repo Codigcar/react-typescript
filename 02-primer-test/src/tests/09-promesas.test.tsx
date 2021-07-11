@@ -1,4 +1,3 @@
-import { doesNotReject } from 'assert';
 import 'jest';
 import { getHeroesByIdAsync } from '../base/09-promesas';
 import heroes from '../data/heroes';
