@@ -1,4 +1,4 @@
 
-export function getSaludo (nombre:string) {
+export function getSaludo (nombre:string = 'Spike') {
     return `Hola ${nombre}`
 }
