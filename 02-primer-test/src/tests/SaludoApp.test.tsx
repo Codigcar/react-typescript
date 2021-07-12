@@ -12,7 +12,16 @@ describe('Pruebas en <SaludoApp/>', () => {
         expect(wrapper).toMatchSnapshot();
         // const {getByText} = render(<SaludoApp saludo={saludo} subtitulo='Castilla'/>);
         // expect(getByText(saludo)).toBeInTheDocument();
-
     })
+
+    test('debe de mostrar el subtitulo enviado por props', () => {
+        const saludo = 'Hola, soy Carlos';
+        const subTitulo = 'Soy un subtitulo';
+        const wrapper = shallow(<SaludoApp saludo={saludo} subtitulo={subTitulo} />);
+        const textParrafo = wrapper.find('p').text();
+        expect(textParrafo).toBe(subTitulo);
+        
+    })
+    
     
 })
