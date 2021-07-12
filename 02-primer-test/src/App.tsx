@@ -1,9 +1,8 @@
 import React from 'react'
+import { CounterApp } from './components/CounterApp';
+import { SaludoApp } from './components/SaludoApp';
 
 export const App = () => {
-  return (
-    <div>
-      Hola
-    </div>
-  )
+  // return <CounterApp />
+  return <SaludoApp saludo='Carlos' subtitulo='Castilla' />
 }

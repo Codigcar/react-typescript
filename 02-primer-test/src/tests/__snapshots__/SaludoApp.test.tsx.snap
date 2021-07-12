@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas en <SaludoApp/> debe de mostrar el mensaje "Hola, Soy Carlos" 1`] = `
+<Fragment>
+  <div
+    className="container"
+  >
+    <h1>
+      Carlos
+    </h1>
+    <p>
+      Castilla
+    </p>
+  </div>
+</Fragment>
+`;
