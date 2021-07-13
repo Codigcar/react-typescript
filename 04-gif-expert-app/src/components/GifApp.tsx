@@ -5,7 +5,7 @@ import { Gifs } from "./Gifs";
 
 export const GifExpertApp = () => {
   // const categories = ['category1','category2','category3'];
-  const [categories, setCategories] = useState(["category1"]);
+  const [categories, setCategories] = useState(["Naruto"]);
 
   return (
     <>
