@@ -1,9 +1,10 @@
 import React from 'react'
 
-export const Gif = () => {
+export const Gif = (props:any) => {
     return (
-        <div>
-            
-        </div>
+        <>
+        <img src={props.url} alt="props.title" />
+            <h3>{props.title}</h3>
+        </>
     )
 }

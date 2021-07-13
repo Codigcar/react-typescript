@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { Gif } from './Gif';
 
 interface propsInterface {
     category:string;
@@ -40,8 +41,11 @@ export const Gifs = (props:propsInterface) => {
             <h3>{props.category}</h3>
             <ol>
                 {
-                    gifs.map((gif:gifType) => (
+                    /* gifs.map((gif:gifType) => (
                         <li key={gif.id}>{ gif.title }</li>
+                    )) */
+                    gifs.map((gif:gifType) => (
+                        <Gif key={gif.id} {...gif} />
                     ))
                 }
             </ol>
