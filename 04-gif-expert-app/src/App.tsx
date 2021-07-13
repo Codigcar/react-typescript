@@ -1,5 +1,5 @@
 import React from 'react'
-import { GifExpertApp } from './components/GifExpertApp'
+import { GifExpertApp } from './components/GifApp'
 import './styles/styles.scss';
 
 
