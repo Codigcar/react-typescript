@@ -1,16 +1,16 @@
 import { useState } from "react";
 
-export const AddCategory = () => {
-  const [inputValue, setInputValue] = useState("default");
+export const AddCategory = (props:any) => {
+  const [inputValue, setInputValue] = useState('');
 
   const handleInputChange = (e: any) => {
-    console.log(e.target.value);
     setInputValue(e.target.value);
-  };
+};
 
-  const handleSubmit = (e: any) => {
+const handleSubmit = (e: any) => {
     e.preventDefault();
-    console.log("submit realizado!");
+    props.setCategories((categories: any) => [...categories, inputValue]);
+    setInputValue('');
   };
 
   return (
