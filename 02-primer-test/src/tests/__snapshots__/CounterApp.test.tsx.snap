@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas en <CounterApp /> debe mostrar el Contador 1`] = `
+<Fragment>
+  <div
+    className="container"
+  >
+    <h2>
+      Contador: 
+      0
+    </h2>
+    <button
+      className="btn btn-primary"
+      onClick={[Function]}
+    >
+      +1
+    </button>
+    <button
+      className="btn btn-danger"
+      onClick={[Function]}
+    >
+      -1
+    </button>
+  </div>
+</Fragment>
+`;

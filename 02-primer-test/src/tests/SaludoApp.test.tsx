@@ -1,8 +1,7 @@
 import 'jest';
-import React from 'react';
 import { shallow } from 'enzyme';
 import { SaludoApp } from '../components/SaludoApp';
-import { render } from '@testing-library/react';
+// import { render } from '@testing-library/react';
 
 describe('Pruebas en <SaludoApp/>', () => {
     test('debe de mostrar el mensaje "Hola, Soy Carlos"', () => {
