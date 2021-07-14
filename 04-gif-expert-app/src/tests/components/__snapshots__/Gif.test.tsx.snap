@@ -5,7 +5,7 @@ exports[`Pruebas a <Gif /> debe mostrar el componente <Gif /> renderizado 1`] = 
   className="card"
 >
   <img
-    alt="props.title"
+    alt="titulo"
     src="https://localhost/algo.jpg:"
   />
   <p>
