@@ -46,7 +46,7 @@ export const Gifs = (props:propsInterface) => {
                     }
                 </ol>
             </div>
-                        }
+            }
         </>
     )
 }

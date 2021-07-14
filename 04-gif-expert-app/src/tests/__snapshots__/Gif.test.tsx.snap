@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas a <Gif /> debe mostrar el componente <Gif /> renderizado 1`] = `
+<div
+  className="card"
+>
+  <img
+    alt="props.title"
+  />
+  <p />
+</div>
+`;
