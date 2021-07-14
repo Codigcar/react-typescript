@@ -18,7 +18,7 @@ export const Gif = (props:any) => {
     )
 } */
 
-Gif.propTypes = {
+/* Gif.propTypes = {
     url: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired
-}
+} */
