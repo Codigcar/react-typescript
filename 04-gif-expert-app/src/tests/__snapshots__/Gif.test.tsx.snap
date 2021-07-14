@@ -6,7 +6,10 @@ exports[`Pruebas a <Gif /> debe mostrar el componente <Gif /> renderizado 1`] = 
 >
   <img
     alt="props.title"
+    src="https://localhost/algo.jpg:"
   />
-  <p />
+  <p>
+    titulo
+  </p>
 </div>
 `;
