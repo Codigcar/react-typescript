@@ -9,6 +9,7 @@ import { DashboardRoute } from './DashboardRoute';
 import { PrivateRoute } from './PrivateRoute';
 import { AuthContext } from '../auth/AuthContext';
 import { useContext } from "react";
+import { PublicRoute } from './PublicRoute';
 
 import {
   BrowserRouter as Router,
@@ -22,17 +23,19 @@ import {
 export const AppRotuer = () => {
 
     const {authState:{logged}} = useContext(AuthContext);
-    console.log(logged);
+    // console.log(logged);
 
     return(
         <Router>
             <div>
                 <Switch>
-                    <Route exact path="/login" component={LoginScreen} />
+                    {/* Convirtiendo a ruta publica */}
+                    {/* <Route exact path="/login" component={LoginScreen} /> */}
+                    <PublicRoute isAuthenticated={logged} exact component={LoginScreen} path="/login" />
                     
                     {/* Convirtiendo a ruta privada */}
                     {/* <Route  path="/" component={DashboardRoute}/> */}
-                    <PrivateRoute isAuthenticated={logged} path="/" component={DashboardRoute} />
+                    <PrivateRoute isAuthenticated={logged}  component={DashboardRoute} path="/" />
                 </Switch>
             </div>
         </Router>  
