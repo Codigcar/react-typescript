@@ -6,6 +6,8 @@ export const LoginScreen = ({history}:any) => {
     
     const {signIn, authState} = useContext(AuthContext);
 
+    const lastPath = localStorage.getItem('lastPath') || '/';
+
     const handleSignIn = () => {
         signIn();
         history.replace('/');

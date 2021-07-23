@@ -8,6 +8,12 @@ export const PrivateRoute = ({
   component: Component,
   ...rest
 }: any) => {
+
+    // Obtener la ultima ruta visitada por el usuario si es que el token expira y lo saca de la aplicacion
+    console.log(rest.location.pathname);
+    localStorage.setItem('lastPath',rest.location.pathname);
+    
+
   return (
     <Route
       {...rest}
