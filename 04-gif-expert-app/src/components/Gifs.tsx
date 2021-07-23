@@ -34,18 +34,18 @@ export const Gifs = (props:propsInterface) => {
                 :
 
             
-            <div className="card-grid">
-                <ol>
-                    {
-                        /* gifs.map((gif:gifType) => (
-                            <li key={gif.id}>{ gif.title }</li>
-                            )) */
-                        data.map((gif:gifType) => (
-                            <Gif key={gif.id} {...gif} />
-                            ))
-                    }
-                </ol>
-            </div>
+                <div className="card-grid">
+                    <ol>
+                        {
+                            /* gifs.map((gif:gifType) => (
+                                <li key={gif.id}>{ gif.title }</li>
+                                )) */
+                            data.map((gif:gifType) => (
+                                <Gif key={gif.id} {...gif} />
+                                ))
+                        }
+                    </ol>
+                </div>
             }
         </>
     )

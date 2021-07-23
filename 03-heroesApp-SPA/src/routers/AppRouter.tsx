@@ -11,7 +11,7 @@ export const AppRouter = () => {
       <div>
         {/* Permite no mostrar el navbar */}
         <Switch>
-            <Route exact path="/login" component={LoginScreen} />
+            <Route  path="/login" component={LoginScreen} />
             <Route path="/" component={DashboardRoute} />
         </Switch>
       </div>

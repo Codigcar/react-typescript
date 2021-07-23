@@ -60,7 +60,7 @@ export const SearchScreen = ({history, location}) => {
                     {
                         (q === '') &&
                             <div className="alert alert-info">
-                                Buscar un heroe
+                                Buscar uPn heroe
                             </div>
                     }
                     {
