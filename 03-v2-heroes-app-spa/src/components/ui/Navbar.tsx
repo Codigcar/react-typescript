@@ -1,7 +1,8 @@
 import React from "react";
-import { useContext } from "react";
 import { Link, NavLink,  useHistory } from "react-router-dom";
 import { AuthContext } from '../../auth/AuthContext';
+import { useContext } from "react";
+
 
 //  el {history} no sirve aqui porque este solo es un componente y  
 //  no está dentro del router
