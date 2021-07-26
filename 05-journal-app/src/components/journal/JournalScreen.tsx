@@ -1,13 +1,14 @@
 import React from 'react'
 import { JournalEntries } from './JournalEntries'
+import { NadaSelected } from './NadaSelected'
 import { Sidebar } from './Sidebar'
 
 export const JournalScreen = () => {
     return (
-        <div className="flex">
+        <div className="flex ">
             <Sidebar />
-            <main>
-                <h1>Main content</h1>
+            <main className="w-screen bg-blue-500">
+                <NadaSelected />
             </main>
             
         </div>
