@@ -1,4 +1,5 @@
 import React from 'react'
+import { JournalEntries } from './JournalEntries'
 import { Sidebar } from './Sidebar'
 
 export const JournalScreen = () => {
@@ -8,6 +9,7 @@ export const JournalScreen = () => {
             <main>
                 <h1>Main content</h1>
             </main>
+            
         </div>
     )
 }
