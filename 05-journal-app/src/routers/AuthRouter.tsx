@@ -6,7 +6,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 export const AuthRouter = () => {
     return (
         
-        <div  className="bg-blue-500 flex justify-center items-center w-screen h-screen">
+        <div  className="bg-purple-500 flex justify-center items-center w-screen h-screen">
             <div className="p-5 border bg-white font-bold w-50 rounded text-2xl">
                 <Switch>
                     <Route exact path="/auth/login" component={LoginScreen} />
