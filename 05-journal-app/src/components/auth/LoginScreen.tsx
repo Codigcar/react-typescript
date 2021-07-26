@@ -10,7 +10,7 @@ export const LoginScreen = () => {
           className="text-gray-500 border-b-2 text-xl mb-2 h-10 focus:outline-none focus:border-purple-500 w-full transition duration-500"
           type="email"
           placeholder="name"
-          name="emial"
+          name="email"
           autoComplete="off"
         />{" "}
         <br />
@@ -39,7 +39,7 @@ export const LoginScreen = () => {
             </div>
           </div>
         </div>
-        <Link to="/auth/register" className="text-base font-normal underline">Create new account</Link>
+        <Link to="/auth/register" className="text-base font-normal text-gray-700">Create new account</Link>
       </form>
     </>
   );
