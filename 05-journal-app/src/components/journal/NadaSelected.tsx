@@ -2,7 +2,7 @@ import React from 'react'
 
 export const NadaSelected = () => {
     return (
-        <div className="flex flex-col items-center justify-center h-screen text-white">
+        <div className="flex flex-col items-center justify-center w-full h-screen text-white bg-blue-500 ">
             <p>
                 Select something
                 <br />
