@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useForm } from '../../hooks/Form';
-import { login } from '../../redux/actions/auth';
+import { login, startLoginEmailPassword } from '../../redux/actions/auth';
 
 type FormData = {
   email: string,
@@ -19,7 +19,8 @@ export const LoginScreen = () => {
   const handleSubmit = (e:any) => {
     e.preventDefault();
     // console.log(email,password);
-    dispatch(login(123, 'Carlos'));
+    // dispatch(login(123, 'Carlos'));
+    dispatch(startLoginEmailPassword(email,password));
   }
   
 
