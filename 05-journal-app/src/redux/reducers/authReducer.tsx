@@ -1,16 +1,16 @@
 import React from 'react'
 
 export type AuthAction = 
-    | {type:'login',payload: {uid:number, displayName:string}}
+    | {type:'login',payload: {uid:string, displayName:string}}
     | {type:'logout'};
 
 export interface AuthState {
-    uid?: number;
+    uid: string;
     name: string;
 }
 
 const authInitialState: AuthState = {
-    uid: undefined,
+    uid: '',
     name: ''
 }
 
@@ -25,7 +25,7 @@ export const authReducer = (state: AuthState = authInitialState, action: AuthAct
         case 'logout':
             return {
                 ...state,
-                uid: undefined,
+                uid: '',
                 name: ''
             }
        default:

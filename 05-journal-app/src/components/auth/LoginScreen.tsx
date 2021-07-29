@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useForm } from '../../hooks/Form';
-import { login, startLoginEmailPassword } from '../../redux/actions/auth';
+import { login, startLoginEmailPassword, startGoogleLogin } from '../../redux/actions/auth';
 
 type FormData = {
   email: string,
@@ -23,7 +23,9 @@ export const LoginScreen = () => {
     dispatch(startLoginEmailPassword(email,password));
   }
   
-
+  const handleGoogleLogin = () => {
+    dispatch(startGoogleLogin());
+  }
 
 
   return (
@@ -55,7 +57,7 @@ export const LoginScreen = () => {
         <div>
           <p className="mt-6 mb-1 text-base text-center">Loging with social networks</p>
           <div>
-            <div className="flex bg-blue-500">
+            <div className="flex bg-blue-500 cursor-pointer" onClick={handleGoogleLogin}>
                 <div className="m-1 bg-white rounded">
                     <img className="w-10 p-3"
                         src="https://cdn.icon-icons.com/icons2/2415/PNG/512/google_original_logo_icon_146496.png"
