@@ -1,41 +1,75 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useForm } from '../../hooks/Form';
 
 export const RegisterScreen = () => {
+
+  type FormData = {
+    name: string,
+    email: string,
+    password: string,
+    password2: string
+  }
+
+  const {formulario, handleChange} = useForm<FormData>({
+    name:'carlos',
+    email:'carlos@gmail.com',
+    password:'123',
+    password2:'123'
+  });
+
+  const {name, email, password, password2} = formulario;
+
+  const handleSubmit = (e:any) => {
+    e.preventDefault();
+    console.log(name, email, password, password2);
+    
+
+  }
+
+
   return (
     <>
-      <h3 className="text-purple-500 font-bold text-3xl mb-5">Register</h3>
-      <form className="w-80">
+      <h3 className="mb-5 text-3xl font-bold text-purple-500">Register</h3>
+      <form onSubmit={handleSubmit} className="w-80">
         <input
-          className="text-gray-500 border-b-2 text-xl mb-2 h-10 focus:outline-none focus:border-purple-500 w-full transition duration-500"
+          className="w-full h-10 mb-2 text-xl text-gray-500 transition duration-500 border-b-2 focus:outline-none focus:border-purple-500"
           type="text"
           placeholder="Name"
           name="name"
           autoComplete="off"
+          value={name}
+          onChange={handleChange}
         />{" "}
         <input
-          className="text-gray-500 border-b-2 text-xl mb-2 h-10 focus:outline-none focus:border-purple-500 w-full transition duration-500"
+          className="w-full h-10 mb-2 text-xl text-gray-500 transition duration-500 border-b-2 focus:outline-none focus:border-purple-500"
           type="email"
           placeholder="Email"
           name="email"
           autoComplete="off"
+          value={email}
+          onChange={handleChange}
         />{" "}
         <br />
         <input
-          className="text-gray-500 text-xl  border-b-2 mb-2 h-10 focus:outline-none  focus:border-purple-500 w-full transition duration-500"
+          className="w-full h-10 mb-2 text-xl text-gray-500 transition duration-500 border-b-2 focus:outline-none focus:border-purple-500"
           type="password"
           placeholder="Password"
           name="password"
+          value={password}
+          onChange={handleChange}
         />
         <input
-          className="text-gray-500 text-xl  border-b-2 mb-2 h-10 focus:outline-none  focus:border-purple-500 w-full transition duration-500"
-          type="password"
+          className="w-full h-10 mb-2 text-xl text-gray-500 transition duration-500 border-b-2 focus:outline-none focus:border-purple-500"
+          type="password2"
           placeholder="Confirm Password"
-          name="confirm"
+          name="password2"
+          value={password2}
+          onChange={handleChange}
         />
         <br />
         <button
-          className="bg-purple-500 px-4 py-1 rounded text-base text-white hover:bg-purple-700 w-full"
+          className="w-full px-4 py-1 text-base text-white bg-purple-500 rounded hover:bg-purple-700"
           type="submit"
         >
           Register
