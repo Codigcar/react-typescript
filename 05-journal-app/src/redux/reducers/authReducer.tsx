@@ -1,8 +1,9 @@
 import React from 'react'
+import { ActionType } from '../types/type';
 
 export type AuthAction = 
-    | {type:'login',payload: {uid:string, displayName:string}}
-    | {type:'logout'};
+    | {type: ActionType.AuthLogin ,payload: {uid:string, displayName:string}}
+    | {type: ActionType.AuthLogout };
 
 export interface AuthState {
     uid: string;
@@ -16,13 +17,13 @@ const authInitialState: AuthState = {
 
 export const authReducer = (state: AuthState = authInitialState, action: AuthAction):AuthState => {
    switch (action.type) {
-       case 'login':
+       case ActionType.AuthLogin:
            return {
                ...state,
                uid: action.payload.uid,
                name: action.payload.displayName
            }
-        case 'logout':
+        case ActionType.AuthLogout:
             return {
                 ...state,
                 uid: '',

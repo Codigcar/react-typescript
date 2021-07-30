@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useForm } from '../../hooks/Form';
-import { login, startLoginEmailPassword, startGoogleLogin } from '../../redux/actions/auth';
+import { login, startLoginEmailPassword, startGoogleLogin } from '../../redux/actions/authActions';
 
 type FormData = {
   email: string,

@@ -1,6 +1,7 @@
 import React from 'react'
 // import { useDispatch } from "react-redux";
 import { firebase, googleAuthProvider } from '../../firebase/firebase-config';
+import { ActionType } from '../types/type';
 
 // Ejemplo y prueba de una peticion asyncrona para el Redux con el Store, confirmando el uso de Middleware
 export const startLoginEmailPassword = (email:string, password:string) => {
@@ -15,7 +16,7 @@ export const startLoginEmailPassword = (email:string, password:string) => {
 
 export const login = (uid: string, displayName: string) => {
     return {
-        type: 'login',
+        type: ActionType.AuthLogin,
         payload: {uid, displayName}
     }
 }

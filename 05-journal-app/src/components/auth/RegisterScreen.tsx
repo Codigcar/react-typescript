@@ -1,10 +1,15 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+// npm i validator , npm i --save-dev @types/validator
 import validator from 'validator';
 
 import { useForm } from '../../hooks/Form';
+import { setError, removeError } from '../../redux/actions/uiActions';
 
 export const RegisterScreen = () => {
+
+  const dispatch = useDispatch();
 
   type FormData = {
     name: string,
@@ -33,15 +38,19 @@ export const RegisterScreen = () => {
 
   const isFormValid = () => {
     if(name.trim().length === 0){
-      console.log('Name is required');
+      dispatch(setError('Name is required'));
+      // console.log('Name is required');
       return false;
     } else if( !validator.isEmail(email) ){
-      console.log('Email is not valid');
+      dispatch(setError('Email is not valid'))
+      // console.log('Email is not valid');
       return false;
     } else if (password !== password2 || password.length < 5){
-      console.log('Passowrd incorrect or length < 5');
+      dispatch(setError('Passowrd incorrect or length < 5'))
+      // console.log('Passowrd incorrect or length < 5');
       return false;
     }
+    dispatch(removeError());
     return true;
   }
 
