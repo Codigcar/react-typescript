@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 // npm i validator , npm i --save-dev @types/validator
 import validator from 'validator';
@@ -7,13 +7,20 @@ import validator from 'validator';
 import { useForm } from '../../hooks/Form';
 import { setError, removeError } from '../../redux/actions/uiActions';
 
+interface RootState {
+  ui: {loading:boolean, msgError:string}
+}
+
 export const RegisterScreen = () => {
 
   const dispatch = useDispatch();
+  const parteDelSelector_mgsError = useSelector((state:RootState) => state.ui.msgError);
+  console.log(parteDelSelector_mgsError);
+  
 
   type FormData = {
     name: string,
-    email: string,
+    email: string, 
     password: string,
     password2: string
   }
@@ -59,6 +66,14 @@ export const RegisterScreen = () => {
     <>
       <h3 className="mb-5 text-3xl font-bold text-purple-500">Register</h3>
       <form onSubmit={handleSubmit} className="w-80">
+        {
+          parteDelSelector_mgsError &&
+          (
+            <div className="p-3 mb-2 text-base text-center text-white bg-red-600 rounded">
+              {parteDelSelector_mgsError}
+            </div>
+          )
+        }
         <input
           className="w-full h-10 mb-2 text-xl text-gray-500 transition duration-500 border-b-2 focus:outline-none focus:border-purple-500"
           type="text"
