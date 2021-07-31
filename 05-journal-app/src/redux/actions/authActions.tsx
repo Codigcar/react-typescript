@@ -7,12 +7,36 @@ import { ActionType } from '../types/type';
 export const startLoginEmailPassword = (email:string, password:string) => {
     // const dispatch = useDispatch();
     return (dispatch:any) => {
-        setTimeout(() => {
-            dispatch(login("123",'CarlosRedux'));
-        }, 3000);
+        // setTimeout(() => {
+        //     dispatch(login("123",'CarlosRedux'));
+        // }, 3000);
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(({user}) => {
+                dispatch( login(user?.uid || '', user?.displayName || '') )
+            })
+            .catch(e => {
+                console.log('error: ',e);
+                
+            })
     }
 
 }
+
+export const startRegisterWithEmailPasswordName = (email:string, password:string, name:string) => {
+    return (dispatch:any) => {
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(async({user}) => {
+                // Rellenar el dato de displayName y registrarlo en la BD
+                await user?.updateProfile({displayName: name});
+                // console.log(user);
+                dispatch( login(user?.uid || '', user?.displayName || '') )
+            })
+            .catch(e => {
+                console.log('error: ',e);
+            })
+    }
+}
+
 
 export const login = (uid: string, displayName: string) => {
     return {
@@ -31,17 +55,3 @@ export const startGoogleLogin = () => {
     }
 }
 
-export const startRegisterWithEmailPasswordName = (email:string, password:string, name:string) => {
-    return (dispatch:any) => {
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then(async({user}) => {
-                // Rellenar el dato de displayName y registrarlo en la BD
-                await user?.updateProfile({displayName: name});
-                // console.log(user);
-                dispatch( login(user?.uid || '', user?.displayName || '') )
-            })
-            .catch(e => {
-                console.log('error: ',e);
-            })
-    }
-}
