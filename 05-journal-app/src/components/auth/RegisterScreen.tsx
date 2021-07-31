@@ -6,6 +6,7 @@ import validator from 'validator';
 
 import { useForm } from '../../hooks/Form';
 import { setError, removeError } from '../../redux/actions/uiActions';
+import { startRegisterWithEmailPasswordName } from '../../redux/actions/authActions';
 
 interface RootState {
   ui: {loading:boolean, msgError:string}
@@ -28,8 +29,8 @@ export const RegisterScreen = () => {
   const {formulario, handleChange} = useForm<FormData>({
     name:'carlos',
     email:'carlos@gmail.com',
-    password:'123',
-    password2:'123'
+    password:'123456',
+    password2:'123456'
   });
 
   const {name, email, password, password2} = formulario;
@@ -39,7 +40,10 @@ export const RegisterScreen = () => {
     // console.log(name, email, password, password2);
 
     if(isFormValid()) {
-      console.log('Formulario correcto');
+      // console.log('Formulario correcto');
+      dispatch(startRegisterWithEmailPasswordName(email, password, name));
+      console.log('registro exitoso!');
+      
     }
   }
 
@@ -52,7 +56,7 @@ export const RegisterScreen = () => {
       dispatch(setError('Email is not valid'))
       // console.log('Email is not valid');
       return false;
-    } else if (password !== password2 || password.length < 5){
+    } else if (password !== password2 || password.length < 6){
       dispatch(setError('Passowrd incorrect or length < 5'))
       // console.log('Passowrd incorrect or length < 5');
       return false;

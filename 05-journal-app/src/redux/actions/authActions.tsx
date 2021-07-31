@@ -30,3 +30,18 @@ export const startGoogleLogin = () => {
             })
     }
 }
+
+export const startRegisterWithEmailPasswordName = (email:string, password:string, name:string) => {
+    return (dispatch:any) => {
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(async({user}) => {
+                // Rellenar el dato de displayName y registrarlo en la BD
+                await user?.updateProfile({displayName: name});
+                // console.log(user);
+                dispatch( login(user?.uid || '', user?.displayName || '') )
+            })
+            .catch(e => {
+                console.log('error: ',e);
+            })
+    }
+}
