@@ -7,7 +7,25 @@ import {
     Route,
     Link
   } from "react-router-dom";
+import { useEffect } from 'react';
+import {firebase} from '../firebase/firebase-config';
+import { useDispatch } from 'react-redux';
+import { login } from '../redux/actions/authActions';
 export const AppRouter = () => {
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+
+            firebase.auth().onAuthStateChanged((user) => {
+                // console.log(user);
+                if(user?.uid){
+                    dispatch( login(user.uid, user.displayName || '') );
+                }
+            });
+
+    }, [])
+
     return (
         <Router>
             <div>
