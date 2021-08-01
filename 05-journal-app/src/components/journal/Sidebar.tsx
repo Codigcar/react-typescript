@@ -1,7 +1,16 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
 import { JournalEntries } from './JournalEntries';
+import { startLogout } from '../../redux/actions/authActions';
 
 export const Sidebar = () => {
+
+    const dispatch = useDispatch();
+
+    const handleLogout = () => {
+        dispatch( startLogout() );
+    }
+
     return (
         <aside className="flex flex-col h-screen pl-5 pr-5 text-white bg-gray-600 w-96">
             <div>
@@ -10,7 +19,8 @@ export const Sidebar = () => {
                     <span>Carlos</span>
                 </h3>
 
-                <button>
+                <button className="p-1 mt-2 bg-red-600 rounded"
+                 onClick={handleLogout}>
                     Logout
                 </button>
             </div>
