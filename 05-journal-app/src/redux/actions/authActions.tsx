@@ -4,6 +4,9 @@ import { firebase, googleAuthProvider } from '../../firebase/firebase-config';
 import { ActionType } from '../types/type';
 import { finishLoading, startLoading } from './uiActions';
 
+// ES6 Modules or TypeScript
+import Swal from 'sweetalert2'
+
 // Ejemplo y prueba de una peticion asyncrona para el Redux con el Store, confirmando el uso de Middleware
 export const startLoginEmailPassword = (email:string, password:string) => {
     // const dispatch = useDispatch();
@@ -20,6 +23,7 @@ export const startLoginEmailPassword = (email:string, password:string) => {
             .catch(e => {
                 console.log('error: ',e);
                 dispatch( finishLoading() );
+                Swal.fire('Error msg', e.message, 'error');
             })
     }
 
@@ -36,6 +40,7 @@ export const startRegisterWithEmailPasswordName = (email:string, password:string
             })
             .catch(e => {
                 console.log('error: ',e);
+                Swal.fire('Error msg', e.message, 'error');
             })
     }
 }
