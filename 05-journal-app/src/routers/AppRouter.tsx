@@ -16,6 +16,7 @@ export const AppRouter = () => {
 
     const dispatch = useDispatch();
     const [verificandoSiEstaLogueado, setVerificandoSiEstaLogueado] = useState(true)
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
 
@@ -23,6 +24,9 @@ export const AppRouter = () => {
                 // console.log(user);
                 if(user?.uid){
                     dispatch( login(user.uid, user.displayName || '') );
+                    setIsLoggedIn(true);
+                } else {
+                    setIsLoggedIn(false);
                 }
                 setVerificandoSiEstaLogueado(false);
             });
