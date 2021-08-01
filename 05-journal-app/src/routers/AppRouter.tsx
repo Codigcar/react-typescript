@@ -12,11 +12,12 @@ import {firebase} from '../firebase/firebase-config';
 import { useDispatch } from 'react-redux';
 import { login } from '../redux/actions/authActions';
 import { useState } from 'react';
+import { PrivateRoute } from './PrivateRoute';
 export const AppRouter = () => {
 
     const dispatch = useDispatch();
     const [verificandoSiEstaLogueado, setVerificandoSiEstaLogueado] = useState(true)
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [estoyLogueado, setEstoyLogueado] = useState(false);
 
     useEffect(() => {
 
@@ -24,9 +25,9 @@ export const AppRouter = () => {
                 // console.log(user);
                 if(user?.uid){
                     dispatch( login(user.uid, user.displayName || '') );
-                    setIsLoggedIn(true);
+                    setEstoyLogueado(true);
                 } else {
-                    setIsLoggedIn(false);
+                    setEstoyLogueado(false);
                 }
                 setVerificandoSiEstaLogueado(false);
             });
@@ -44,7 +45,8 @@ export const AppRouter = () => {
             <div>
                 <Switch>
                     <Route path="/auth" component={AuthRouter} />
-                    <Route exact path="/" component={JournalScreen} />
+                    <PrivateRoute isAuthenticated={estoyLogueado} component={JournalScreen} exact path="/"  />
+                    {/* <Route exact path="/" component={JournalScreen} /> */}
                 </Switch>
             </div>
         </Router>
