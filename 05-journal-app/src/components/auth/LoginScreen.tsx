@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useForm } from '../../hooks/Form';
 import { login, startLoginEmailPassword, startGoogleLogin } from '../../redux/actions/authActions';
@@ -9,12 +9,20 @@ type FormData = {
   password: string
 }
 
+type RootState = {
+  ui: {loading:boolean}
+}
+
 export const LoginScreen = () => {
 
-  const {formulario, handleChange} = useForm<FormData>({email: 'carlos@gmail.com', password:'carlos'});
+  const {formulario, handleChange} = useForm<FormData>({email: 'carlos4@gmail.com', password:'123456'});
   const {email, password} = formulario;
   // Hook para hacer dispath de acciones
   const dispatch = useDispatch();
+  // Para traer el valor del Loading(true or false) del state
+  const parteLoadingState = useSelector((state:RootState) => state.ui.loading);
+  console.log(parteLoadingState);
+  
 
   const handleSubmit = (e:any) => {
     e.preventDefault();
@@ -52,7 +60,11 @@ export const LoginScreen = () => {
           value={password}
         />
         <br />
-        <button className="w-full px-4 py-1 text-base text-white bg-purple-500 rounded hover:bg-purple-700" type="submit">Login</button>
+        <button className="w-full px-4 py-1 text-base text-white bg-purple-500 rounded hover:bg-purple-700 disabled:opacity-50" type="submit" disabled={parteLoadingState}>
+          {
+            parteLoadingState ? 'Cargando...' : 'Login'
+          }
+        </button>
         <hr />
         <div>
           <p className="mt-6 mb-1 text-base text-center">Loging with social networks</p>

@@ -2,6 +2,7 @@ import React from 'react'
 // import { useDispatch } from "react-redux";
 import { firebase, googleAuthProvider } from '../../firebase/firebase-config';
 import { ActionType } from '../types/type';
+import { finishLoading, startLoading } from './uiActions';
 
 // Ejemplo y prueba de una peticion asyncrona para el Redux con el Store, confirmando el uso de Middleware
 export const startLoginEmailPassword = (email:string, password:string) => {
@@ -10,13 +11,15 @@ export const startLoginEmailPassword = (email:string, password:string) => {
         // setTimeout(() => {
         //     dispatch(login("123",'CarlosRedux'));
         // }, 3000);
+        dispatch( startLoading() );
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(({user}) => {
                 dispatch( login(user?.uid || '', user?.displayName || '') )
+                dispatch( finishLoading() );
             })
             .catch(e => {
                 console.log('error: ',e);
-                
+                dispatch( finishLoading() );
             })
     }
 

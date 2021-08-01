@@ -14,3 +14,15 @@ export const removeError = () => {
         type: ActionType.UIRemoveError
     }
 };
+
+export const startLoading = () => {
+    return {
+        type: ActionType.UIStartLoading
+    }
+}
+
+export const finishLoading = () => {
+    return {
+        type: ActionType.UIFinishLoading
+    }
+}
