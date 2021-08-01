@@ -11,9 +11,11 @@ import { useEffect } from 'react';
 import {firebase} from '../firebase/firebase-config';
 import { useDispatch } from 'react-redux';
 import { login } from '../redux/actions/authActions';
+import { useState } from 'react';
 export const AppRouter = () => {
 
     const dispatch = useDispatch();
+    const [verificandoSiEstaLogueado, setVerificandoSiEstaLogueado] = useState(true)
 
     useEffect(() => {
 
@@ -22,9 +24,16 @@ export const AppRouter = () => {
                 if(user?.uid){
                     dispatch( login(user.uid, user.displayName || '') );
                 }
+                setVerificandoSiEstaLogueado(false);
             });
 
     }, [])
+
+    if(verificandoSiEstaLogueado){
+        return (
+            <h1>Espere...</h1>
+        )
+    }
 
     return (
         <Router>
