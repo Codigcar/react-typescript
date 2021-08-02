@@ -8,14 +8,14 @@ import { useForm } from '../../hooks/Form';
 import { setError, removeError } from '../../redux/actions/uiActions';
 import { startRegisterWithEmailPasswordName } from '../../redux/actions/authActions';
 
-interface RootState {
+export interface UIRootState {
   ui: {loading:boolean, msgError:string}
 }
 
 export const RegisterScreen = () => {
 
   const dispatch = useDispatch();
-  const parteDelSelector_mgsError = useSelector((state:RootState) => state.ui.msgError);
+  const parteDelSelector_mgsError = useSelector((state:UIRootState) => state.ui.msgError);
   console.log(parteDelSelector_mgsError);
   
 

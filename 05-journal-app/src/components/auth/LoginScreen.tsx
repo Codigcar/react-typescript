@@ -3,15 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useForm } from '../../hooks/Form';
 import { login, startLoginEmailPassword, startGoogleLogin } from '../../redux/actions/authActions';
+import { UIRootState } from './RegisterScreen';
 
 type FormData = {
   email: string,
   password: string
 }
 
-type RootState = {
-  ui: {loading:boolean}
-}
 
 export const LoginScreen = () => {
 
@@ -20,7 +18,7 @@ export const LoginScreen = () => {
   // Hook para hacer dispath de acciones
   const dispatch = useDispatch();
   // Para traer el valor del Loading(true or false) del state
-  const parteLoadingState = useSelector((state:RootState) => state.ui.loading);
+  const parteLoadingState = useSelector((state:UIRootState) => state.ui.loading);
   console.log(parteLoadingState);
   
 

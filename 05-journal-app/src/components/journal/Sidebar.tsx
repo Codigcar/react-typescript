@@ -1,11 +1,16 @@
 import React from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { JournalEntries } from './JournalEntries';
 import { startLogout } from '../../redux/actions/authActions';
+
+export interface AuthRootState {
+    auth: {uid:string, name: string};
+}
 
 export const Sidebar = () => {
 
     const dispatch = useDispatch();
+    const parteNameDelSatate = useSelector((state:AuthRootState ) => state.auth.name);
 
     const handleLogout = () => {
         dispatch( startLogout() );
@@ -16,7 +21,7 @@ export const Sidebar = () => {
             <div>
                 <h3 className="mt-5">
                     <i className="fas fa-moon"></i>
-                    <span>Carlos</span>
+                    <span>{parteNameDelSatate}</span>
                 </h3>
 
                 <button className="p-1 mt-2 bg-red-600 rounded"
