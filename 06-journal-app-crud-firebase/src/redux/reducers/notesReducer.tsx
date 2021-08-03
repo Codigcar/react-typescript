@@ -1,4 +1,5 @@
 import React from 'react'
+import { ActionType } from '../types/type';
 
 /* 
     {
@@ -12,6 +13,9 @@ import React from 'react'
         }
     }
  */
+
+    export type NoteAction = 
+    | {type: ActionType.notesActive ,payload: {id:string, title:string, body:string, imageUrl:string, date:number}}
 
 export interface NoteState {
     notes: [];
@@ -29,14 +33,18 @@ const noteInitialState: NoteState = {
     active: null
 }
 
-export const notesReducer = (state: NoteState = noteInitialState, action: any): NoteState => {
-    /* switch (action) {
-        case value:
-            
-            break;
+export const notesReducer = (state: NoteState = noteInitialState, action: NoteAction): NoteState => {
+    switch (action.type) {
+        case ActionType.notesActive:
+            return {
+                ...state,
+                active: {
+                    ...action.payload
+                }
+            }
     
         default:
-            break;
-    } */
-    return state;
+            return state;
+    }
+    
 }
