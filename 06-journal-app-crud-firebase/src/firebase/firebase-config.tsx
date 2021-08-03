@@ -12,9 +12,9 @@ const firebaseConfig = {
   };
   
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+const fb = firebase.initializeApp(firebaseConfig);
 
-const db = firebase.firestore();
+const db = fb.firestore();
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
 export {

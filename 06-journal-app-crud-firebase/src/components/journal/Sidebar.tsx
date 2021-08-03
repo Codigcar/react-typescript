@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { JournalEntries } from './JournalEntries';
 import { startLogout } from '../../redux/actions/authActions';
+import { startNewNote } from '../../redux/actions/notesActions';
 
 export interface AuthRootState {
     auth: {uid:string, name: string};
@@ -14,6 +15,10 @@ export const Sidebar = () => {
 
     const handleLogout = () => {
         dispatch( startLogout() );
+    }
+
+    const handleAddNew = () => {
+        dispatch(startNewNote());
     }
 
     return (
@@ -29,7 +34,7 @@ export const Sidebar = () => {
                     Logout
                 </button>
             </div>
-            <div className="flex flex-col items-center justify-center mt-10 transition duration-500 hover:text-gray-500">
+            <div className="flex flex-col items-center justify-center mt-10 transition duration-500 hover:text-gray-500" onClick={handleAddNew}>
                 <i className="far fa-calendar-plus fa-5x"></i>
                 <p className="cursor-pointer">New Entry</p>
             </div>
