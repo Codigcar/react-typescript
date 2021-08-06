@@ -14,6 +14,7 @@ import { login } from '../redux/actions/authActions';
 import { useState } from 'react';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
+import { loadNotesBD } from '../helper/loadNotes';
 export const AppRouter = () => {
 
     const dispatch = useDispatch();
@@ -27,6 +28,7 @@ export const AppRouter = () => {
                 if(user?.uid){
                     dispatch( login(user.uid, user.displayName || '') );
                     setEstoyLogueado(true);
+                    loadNotesBD(user.uid);
                 } else {
                     setEstoyLogueado(false);
                 }

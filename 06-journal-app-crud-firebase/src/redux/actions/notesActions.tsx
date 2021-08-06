@@ -15,7 +15,10 @@ export const startNewNote = () => {
 
         // const doc = await db.collection('primera').add({body:'body',title:'title22'})
         // console.log(doc);
-        dispatch(activeNote(uid, newNote));
+        const notesSnap = await db.collection('primera').get();
+        console.log(notesSnap);
+        
+        // dispatch(activeNote(uid, newNote));
     }
 }
 
