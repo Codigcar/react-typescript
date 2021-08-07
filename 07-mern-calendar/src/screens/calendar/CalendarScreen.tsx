@@ -20,6 +20,19 @@ const myEventsList = [{
 }]
 
 export const CalendarScreen = () => {
+
+    const eventStyleGetter = (event: any, start:any, end:any, isSelected:any) => {
+        const style = {
+            backgroundColor: 'red',
+            borderRadius: '0px',
+            opacity: 0.8,
+            display: 'block'
+        }
+        return {
+            style
+        }
+    };
+
     return (
         <div className="calendar-screen">
             <Navbar />
@@ -29,6 +42,7 @@ export const CalendarScreen = () => {
                 startAccessor="start"
                 endAccessor="end"
                 messages={messages}
+                eventPropGetter={eventStyleGetter}
             />
         </div>
     )
