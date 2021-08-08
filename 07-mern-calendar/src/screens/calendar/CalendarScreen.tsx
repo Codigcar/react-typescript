@@ -4,11 +4,12 @@ import moment from 'moment';
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import { Navbar } from '../../components/ui/Navbar';
 import { messages } from '../../helpers/calendar-idioma';
+import { CalendarEvent } from './CalendarEvent';
+import { useState } from 'react';
+import { CalendarModal } from './CalendarModal';
 
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'moment/locale/es';
-import { CalendarEvent } from './CalendarEvent';
-import { useState } from 'react';
 
 moment.locale('es');
 // Setup the localizer by providing the moment (or globalize) Object
@@ -24,6 +25,7 @@ const myEventsList = [{
         name: 'Name del evento'
     }
 }]
+
 
 export const CalendarScreen = () => {
     const [lastView, setLastView] = useState( localStorage.getItem('ultimaVista') || 'month');
@@ -75,9 +77,9 @@ export const CalendarScreen = () => {
                 onView={onViewChange}
                 // Asignarle que vista actual mostrar
                 // // view={lastView}
-                
-
             />
+            
+            <CalendarModal />
         </div>
     )
 }
