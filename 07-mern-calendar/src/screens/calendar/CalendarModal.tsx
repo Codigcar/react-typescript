@@ -8,6 +8,8 @@ import moment from 'moment';
 
 // ES6 Modules or TypeScript
 import Swal from 'sweetalert2'
+import { useDispatch, useSelector } from 'react-redux';
+import { uiCloseModal } from '../../redux/actions/uiActions';
 
 const customStyles = {
     content: {
@@ -26,16 +28,31 @@ Modal.setAppElement('#root');
 const fechaTiempoAhora = moment().minutes(0).seconds(0).add(1, 'hours'); //11:00:00
 const fechaTiempoAhoraPlus1 = fechaTiempoAhora.clone().add(1,'hours');
 
+
+interface RootState {
+    ui: {
+        modalOpen: boolean
+    }
+}
+
 export const CalendarModal = () => {
 
-    const [isOpen, setIsOpen] = useState(true);
+    // abrir o cerrar modal
+    // const [isOpen, setIsOpen] = useState(true);
     const [fechaInicio, setFechaInicio] = useState( fechaTiempoAhora.toDate() )
     const [fechaFin, setFechaFin] = useState(fechaTiempoAhoraPlus1.toDate());
     const [tituloValido, setTituloValido] = useState(true);
 
+    // Obtener el modalOpen del state
+    const parteDelSelector_ModalOpen = useSelector((state: RootState) => state.ui.modalOpen);
+    console.log('parteDelSelector_ModalOpen: ',parteDelSelector_ModalOpen);
+
+    const dispatch = useDispatch();
+
     const closeModal = () => {
         console.log('closing...');
-        setIsOpen(false);
+        // setIsOpen(false);
+        dispatch(uiCloseModal());
     }
 
     const handleStartDateChange = (e: any) => {
@@ -103,7 +120,7 @@ export const CalendarModal = () => {
 
     return (
         <Modal
-            isOpen={isOpen}
+            isOpen={parteDelSelector_ModalOpen}
             // onAfterOpen={afterOpenModal}
             onRequestClose={closeModal}
             style={customStyles}

@@ -2,6 +2,7 @@ import { actionTypes } from '../types/type';
 
 export type UIAction =
     | { type: actionTypes.uiOpenModal }
+    | { type: actionTypes.uiCloseModal }
 
 export interface UIState {
     modalOpen: boolean
@@ -18,7 +19,7 @@ export const uiReducer = (state: UIState = initialState, action: UIAction): UISt
                 ...state,
                 modalOpen: true
             }
-        case actionTypes.uiOpenModal:
+        case actionTypes.uiCloseModal:
             return {
                 ...state,
                 modalOpen: false
