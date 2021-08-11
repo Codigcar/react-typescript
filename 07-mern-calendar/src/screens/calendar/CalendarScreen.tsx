@@ -12,6 +12,8 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'moment/locale/es';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiOpenModal } from '../../redux/actions/uiActions';
+import { eventSetActive } from '../../redux/actions/eventsActions';
+import { AddNewFab } from '../../components/ui/AddNewFab';
 
 moment.locale('es');
 // Setup the localizer by providing the moment (or globalize) Object
@@ -52,6 +54,8 @@ export const CalendarScreen = () => {
 
     const onSelectEvent = (e:any) => {
         console.log('onSelectEvent: ',e);
+        dispatch(eventSetActive(e));
+        dispatch(uiOpenModal());
     }
 
     const onViewChange = (e:any) => {
@@ -82,6 +86,8 @@ export const CalendarScreen = () => {
                 // Asignarle que vista actual mostrar
                 // // view={lastView}
             />
+
+            <AddNewFab />
             
             <CalendarModal />
         </div>
