@@ -2,7 +2,7 @@
 const {Router} = require('express');
 const router = Router();
 
-const { crearUsuario, loginUsuario, revalidarToken } = require('../controllers/auth');
+const { crearUsuario, loginUsuario, revalidarToken } = require('../controllers/auth_controller');
 
 
 /* app */router.get("/", (req, res) => {

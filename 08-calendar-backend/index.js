@@ -8,7 +8,17 @@ require('dotenv').config();
 // Crear el servidor de express
 const app = express();
 
+// Directorio pubico
+// Reemplazo de 'Rutas' x un Directorio Público
+app.use(express.static('public'));
+
+
+
+// Lectura y parseo del body 
+app.use(express.json()); /* middleware */
+
 // Rutas
+
 // app.get("/", (req, res) => {
 //   console.log("se requiere /");
 //   res.json({
@@ -16,13 +26,8 @@ const app = express();
 //   })
 // });
 app.use('/api/auth', require('./routes/auth'));
-
-
 // end-- Rutas
 
-
-// Reemplazo de 'Rutas' x un Directorio Público
-app.use(express.static('public'));
 
 // Escuchar peticiones
 app.listen(process.env.PORT, () => {

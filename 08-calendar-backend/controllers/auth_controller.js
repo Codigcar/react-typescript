@@ -1,9 +1,24 @@
 const express = require('express');
 
 const crearUsuario = (req,res = express.response) => {
+
+    const {name, email, password} = req.body;
+    // console.log(req);
+
+    if ( name.length < 5 ) {
+        return res.status(400).json({
+            ok: false,
+            msg: 'El nombre debe ser de 5 letras mmínimo'
+        })
+    }
+
+
     res.json({
         ok:true,
-        msg: 'registro'
+        msg: 'registro22',
+        name: name,
+        email: email,
+        password, password
       });
 }
 
