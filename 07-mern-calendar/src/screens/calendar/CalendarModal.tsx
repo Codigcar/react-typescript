@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
@@ -10,7 +10,7 @@ import moment from 'moment';
 import Swal from 'sweetalert2'
 import { useDispatch, useSelector } from 'react-redux';
 import { uiCloseModal } from '../../redux/actions/uiActions';
-import { eventAddNew } from '../../redux/actions/eventsActions';
+import { eventAddNew, eventClearActiveEvent } from '../../redux/actions/eventsActions';
 
 const customStyles = {
     content: {
@@ -33,6 +33,10 @@ const fechaTiempoAhoraPlus1 = fechaTiempoAhora.clone().add(1,'hours');
 interface RootState {
     ui: {
         modalOpen: boolean
+    },
+    calendar:{
+        events:any,
+        activeEvent:any
     }
 }
 
@@ -54,6 +58,8 @@ export const CalendarModal = () => {
         console.log('closing...');
         // setIsOpen(false);
         dispatch(uiCloseModal());
+        // volver null el activeEvent
+        dispatch(eventClearActiveEvent());
         setFormValues(initState);
     }
 
@@ -130,6 +136,17 @@ export const CalendarModal = () => {
     }
 
     /* end... Enviar datao del formulario */
+
+    // Obtener el activeEvent del state
+    const parteDelSelector_activeEvent = useSelector((state: RootState) => state.calendar.activeEvent);
+    console.log('parteDelSelector_activeEvent: ',parteDelSelector_activeEvent);
+
+    useEffect(() => {
+        if (parteDelSelector_activeEvent){
+            // console.log(parteDelSelector_activeEvent);
+            setFormValues(parteDelSelector_activeEvent);
+        }
+    }, [parteDelSelector_activeEvent, setFormValues])
 
     
 

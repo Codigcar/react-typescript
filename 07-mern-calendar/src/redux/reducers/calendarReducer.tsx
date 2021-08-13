@@ -15,6 +15,7 @@ export type CalendarActon =
     };
 } }
 | {type:actionTypes.eventSetActive , payload: string }
+| {type:actionTypes.eventClearActiveEvent }
 
 export interface EventState {
     events: {
@@ -66,6 +67,12 @@ export const calendarReducer = (state:EventState = initialState, action:Calendar
             return {
                 ...state,
                 activeEvent: action.payload
+            }
+
+        case actionTypes.eventClearActiveEvent:
+            return {
+                ...state,
+                activeEvent: null
             }
         default:
             return state;
