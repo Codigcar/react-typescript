@@ -3,7 +3,7 @@ const express = require("express");
 
 // traer variables de entornos
 require('dotenv').config();
-console.log(process.env);
+// console.log(process.env);
 
 // Crear el servidor de express
 const app = express();
@@ -15,6 +15,11 @@ const app = express();
 //       ok:true
 //   })
 // });
+app.use('/api/auth', require('./routes/auth'));
+
+
+// end-- Rutas
+
 
 // Reemplazo de 'Rutas' x un Directorio Público
 app.use(express.static('public'));
