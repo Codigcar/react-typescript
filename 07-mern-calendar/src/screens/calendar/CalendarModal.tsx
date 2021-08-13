@@ -30,7 +30,7 @@ const fechaTiempoAhora = moment().minutes(0).seconds(0).add(1, 'hours'); //11:00
 const fechaTiempoAhoraPlus1 = fechaTiempoAhora.clone().add(1,'hours');
 
 
-interface RootState {
+export interface RootState {
     ui: {
         modalOpen: boolean
     },
@@ -60,7 +60,7 @@ export const CalendarModal = () => {
         dispatch(uiCloseModal());
         // volver null el activeEvent
         dispatch(eventClearActiveEvent());
-        setFormValues(initState);
+        setFormValues(initEvent);
     }
 
     const handleStartDateChange = (e: any) => {
@@ -83,14 +83,14 @@ export const CalendarModal = () => {
 
     /* Enviar datao del formulario */
 
-    const initState = {
+    const initEvent = {
         title: '',
         notes: '',
         start: fechaTiempoAhora.toDate(),
         end: fechaTiempoAhoraPlus1.toDate()
     }
 
-    const [formValues, setFormValues] = useState(initState);
+    const [formValues, setFormValues] = useState(initEvent);
     const {notes, title, start, end} = formValues;
 
     const handleInputChange = (e:any) => {
@@ -126,7 +126,7 @@ export const CalendarModal = () => {
         } else {
             // crear un nuevo event
             
-            // TODO: Realizar grabacion base de datos
+            // TODO: Realizar grabacion base de datos 
             dispatch(eventAddNew({
                 ...formValues,
                 id: new Date().getTime(),
@@ -153,6 +153,9 @@ export const CalendarModal = () => {
         if (parteDelSelector_activeEvent){
             // console.log(parteDelSelector_activeEvent);
             setFormValues(parteDelSelector_activeEvent);
+        } else {
+            // limpiar formulario al eliminar el evento cuando activeEvent=null
+            setFormValues(initEvent);
         }
     }, [parteDelSelector_activeEvent, setFormValues])
 
@@ -173,7 +176,8 @@ export const CalendarModal = () => {
             {/* <h1>Hola Modal</h1>
             <hr />
             <span>Relleno</span> */}
-            <h1> Nuevo evento </h1>
+
+            <h1> {(parteDelSelector_activeEvent? "Editar evento": "Nuevo evento" )} </h1>
             <hr />
             <form className="container" onSubmit={handleSubmitForm}>
 

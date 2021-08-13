@@ -29,3 +29,9 @@ export const eventUpdated = (event:any) => {
         payload: event
     }
 }
+
+export const eventDeleted = () => {
+    return {
+        type: actionTypes.eventDeleted,
+    }
+}

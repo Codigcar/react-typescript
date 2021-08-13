@@ -6,5 +6,6 @@ export enum actionTypes {
     eventSetActive = '[event] Set Active',
     eventAddNew = '[event] Add new',
     eventClearActiveEvent = '[event] Clear ActiveEvent',
-    eventUpdated = '[event] Event updated'
+    eventUpdated = '[event] Event updated',
+    eventDeleted = '[event] Event deleted'
 }

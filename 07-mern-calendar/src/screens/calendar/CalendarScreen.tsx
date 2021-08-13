@@ -6,7 +6,7 @@ import { Navbar } from '../../components/ui/Navbar';
 import { messages } from '../../helpers/calendar-idioma';
 import { CalendarEvent } from './CalendarEvent';
 import { useState } from 'react';
-import { CalendarModal } from './CalendarModal';
+import { CalendarModal, RootState } from './CalendarModal';
 
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'moment/locale/es';
@@ -15,6 +15,7 @@ import { uiOpenModal } from '../../redux/actions/uiActions';
 import { eventSetActive } from '../../redux/actions/eventsActions';
 import { AddNewFab } from '../../components/ui/AddNewFab';
 import { EventState } from '../../redux/reducers/calendarReducer';
+import { DeleteEventFab } from '../../components/ui/DeleteEventFab';
 
 moment.locale('es');
 // Setup the localizer by providing the moment (or globalize) Object
@@ -39,6 +40,13 @@ export const CalendarScreen = () => {
     // extraer el evento del reduxState y mostrarlo, para ello el useState
     const myEventsList = useSelector((state:any) => state.calendar.events)
 
+    // Obtener el activeEvent del state
+    const parteDelSelector_activeEvent = useSelector((state: RootState) => state.calendar.activeEvent);
+
+
+
+
+
     const eventStyleGetter = (event: any, start:any, end:any, isSelected:any) => {
         const style = {
             backgroundColor: 'red',
@@ -59,7 +67,6 @@ export const CalendarScreen = () => {
     const onSelectEvent = (e:any) => {
         console.log('onSelectEvent: ',e);
         dispatch(eventSetActive(e));
-        dispatch(uiOpenModal());
     }
 
     const onViewChange = (e:any) => {
@@ -93,7 +100,12 @@ export const CalendarScreen = () => {
 
             <AddNewFab />
             
+            {
+                (parteDelSelector_activeEvent) && <DeleteEventFab />
+
+            }
             <CalendarModal />
+
         </div>
     )
 }
