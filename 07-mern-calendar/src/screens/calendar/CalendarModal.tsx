@@ -54,6 +54,7 @@ export const CalendarModal = () => {
         console.log('closing...');
         // setIsOpen(false);
         dispatch(uiCloseModal());
+        setFormValues(initState);
     }
 
     const handleStartDateChange = (e: any) => {
@@ -75,12 +76,15 @@ export const CalendarModal = () => {
     }
 
     /* Enviar datao del formulario */
-    const [formValues, setFormValues] = useState({
-        title: 'Evento',
+
+    const initState = {
+        title: '',
         notes: '',
         start: fechaTiempoAhora.toDate(),
         end: fechaTiempoAhoraPlus1.toDate()
-    })
+    }
+
+    const [formValues, setFormValues] = useState(initState);
     const {notes, title, start, end} = formValues;
 
     const handleInputChange = (e:any) => {
