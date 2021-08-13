@@ -12,7 +12,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'moment/locale/es';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiOpenModal } from '../../redux/actions/uiActions';
-import { eventSetActive } from '../../redux/actions/eventsActions';
+import { eventSetActive, eventClearActiveEvent } from '../../redux/actions/eventsActions';
 import { AddNewFab } from '../../components/ui/AddNewFab';
 import { EventState } from '../../redux/reducers/calendarReducer';
 import { DeleteEventFab } from '../../components/ui/DeleteEventFab';
@@ -75,6 +75,11 @@ export const CalendarScreen = () => {
         localStorage.setItem('ultimaVista', e);
     }
 
+    const onSelectSlot = (e:any) => {
+        console.log('onSelectSlot: ', onSelectSlot);
+        dispatch(eventClearActiveEvent());
+    }
+
 
     return (
         <div className="calendar-screen">
@@ -96,6 +101,10 @@ export const CalendarScreen = () => {
                 onView={onViewChange}
                 // Asignarle que vista actual mostrar
                 // // view={lastView}
+
+                // para quitar el boton eliminar cuando seleccionar != evento
+                onSelectSlot={onSelectSlot}
+                selectable={true}
             />
 
             <AddNewFab />
