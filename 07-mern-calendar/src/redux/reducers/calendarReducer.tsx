@@ -16,6 +16,7 @@ export type CalendarActon =
 } }
 | {type:actionTypes.eventSetActive , payload: string }
 | {type:actionTypes.eventClearActiveEvent }
+| {type:actionTypes.eventUpdated, payload: any }
 
 export interface EventState {
     events: {
@@ -73,6 +74,15 @@ export const calendarReducer = (state:EventState = initialState, action:Calendar
             return {
                 ...state,
                 activeEvent: null
+            }
+
+        case actionTypes.eventUpdated:
+            return {
+                ...state,
+                activeEvent: null,
+                events: state.events.map(
+                    e => (e.id === action.payload.id) ? action.payload : e
+                )
             }
         default:
             return state;

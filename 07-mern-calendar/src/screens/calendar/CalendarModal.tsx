@@ -10,7 +10,7 @@ import moment from 'moment';
 import Swal from 'sweetalert2'
 import { useDispatch, useSelector } from 'react-redux';
 import { uiCloseModal } from '../../redux/actions/uiActions';
-import { eventAddNew, eventClearActiveEvent } from '../../redux/actions/eventsActions';
+import { eventAddNew, eventClearActiveEvent, eventUpdated } from '../../redux/actions/eventsActions';
 
 const customStyles = {
     content: {
@@ -119,16 +119,24 @@ export const CalendarModal = () => {
         if(title.trim().length < 2 ){
             return setTituloValido(false);
         }
+        // EDITAR: validar si el activeEvent:null (crear nuevo), si tiene data es editar 
+        if (parteDelSelector_activeEvent){
+            // editar un event
+            dispatch(eventUpdated(formValues));
+        } else {
+            // crear un nuevo event
+            
+            // TODO: Realizar grabacion base de datos
+            dispatch(eventAddNew({
+                ...formValues,
+                id: new Date().getTime(),
+                user: {
+                    _id:'123',
+                    name:'Carlos'
+                }
+            }));
+        }
 
-        // TODO: Realizar grabacion base de datos
-        dispatch(eventAddNew({
-            ...formValues,
-            id: new Date().getTime(),
-            user: {
-                _id:'123',
-                name:'Carlos'
-            }
-        }));
 
 
         setTituloValido(true);

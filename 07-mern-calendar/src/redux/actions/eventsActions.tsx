@@ -22,3 +22,10 @@ export const eventClearActiveEvent = () => {
         type: actionTypes.eventClearActiveEvent
     }
 }
+
+export const eventUpdated = (event:any) => {
+    return {
+        type: actionTypes.eventUpdated,
+        payload: event
+    }
+}
