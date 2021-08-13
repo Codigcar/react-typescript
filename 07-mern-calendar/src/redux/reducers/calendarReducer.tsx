@@ -2,7 +2,18 @@ import moment from 'moment';
 import { actionTypes } from '../types/type';
 
 export type CalendarActon = 
-| {type:actionTypes.eventAddNew, payload: string }
+| {type:actionTypes.eventAddNew, payload:  {
+    title: string;
+    start: Date;
+    end: Date;
+    // bgcolor: string;
+    notes: string;
+    id:number
+    user: {
+        _id: string;
+        name: string;
+    };
+} }
 | {type:actionTypes.eventSetActive , payload: string }
 
 export interface EventState {
@@ -10,7 +21,9 @@ export interface EventState {
         title: string;
         start: Date;
         end: Date;
-        bgcolor: string;
+        // bgcolor: string;
+        notes: string;
+        id:number
         user: {
             _id: string;
             name: string;
@@ -25,12 +38,14 @@ const initialState:EventState = {
             title: 'Titulo del evento',
             start: moment().toDate(),
             end: moment().add(2, 'hour').toDate(),
-            bgcolor: '#fafafa',
+            // bgcolor: '#fafafa',
+            notes: '123',
+            id: 1,
             user: {
                 _id: '123',
                 name: 'Name del evento'
             }
-        }
+        },
     ],
     activeEvent: null
 };
@@ -40,7 +55,11 @@ export const calendarReducer = (state:EventState = initialState, action:Calendar
         case actionTypes.eventAddNew:
             return {
                 ...state,
-                activeEvent: action.payload
+                // activeEvent: action.payload
+                events:[
+                    ...state.events,
+                    action.payload
+                ]
             }
             
         case actionTypes.eventSetActive:
