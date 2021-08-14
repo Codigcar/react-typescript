@@ -1,5 +1,7 @@
 
 const {Router} = require('express');
+// npm i express-validator
+const {check} = require('express-validator');
 const router = Router();
 
 const { crearUsuario, loginUsuario, revalidarToken } = require('../controllers/auth_controller');
@@ -18,7 +20,11 @@ const { crearUsuario, loginUsuario, revalidarToken } = require('../controllers/a
 //     msg: 'registro'
 //   })
 // })
-router.post('/new', crearUsuario);
+router.post('/new',[
+  check('name','El nombre es obligatorio').not().isEmpty(),
+  check('email','El email es obligatorio').isEmail(),
+  check('password','El password debe ser de minimo 4 caracteres').isLength({min:4}),
+], crearUsuario);
 
 // router.post('/', (req,res) => {
 //   res.json({
@@ -26,7 +32,10 @@ router.post('/new', crearUsuario);
 //     msg: 'login'
 //   })
 // })
-router.post('/', loginUsuario)
+router.post('/',[
+  check('email','El email es obligatorio').isEmail(),
+  check('password','El password debe ser de minimo 4 caracteres').isLength({min:4}),
+], loginUsuario)
 
 // router.get('/renew', (req,res) => {
 //   res.json({
