@@ -6,6 +6,7 @@ const crearUsuario = async (req, res = express.response) => {
     const { name, email, password } = req.body;
     // console.log(req);
 
+    // Funcion FindOne
     let usuario = await Usuario.findOne({email: email});
 
     if(usuario) {
