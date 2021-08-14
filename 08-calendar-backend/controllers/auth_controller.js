@@ -6,7 +6,16 @@ const crearUsuario = async (req, res = express.response) => {
     const { name, email, password } = req.body;
     // console.log(req);
 
-    const usuario = new Usuario(req.body);
+    let usuario = await Usuario.findOne({email: email});
+
+    if(usuario) {
+        return res.status(400).json({
+            ok: false,
+            msg: 'Un usuario existe con este correo',            
+        });
+    }
+
+    usuario = new Usuario(req.body);
     await usuario.save();
 
     // if ( name.length < 5 ) {
@@ -18,11 +27,11 @@ const crearUsuario = async (req, res = express.response) => {
 
     res.status(201).json({
       ok: true,
-      msg: "registro22",
-      name: name,
-      email: email,
-      password,
-      password,
+      msg: "Usuario registrado con exito",
+      uid: usuario.uid,
+      name: usuario.name,
+      email: usuario.email,
+      password: usuario.password,
     });
   } catch (error) {
       console.log('Error /new: ', error);
