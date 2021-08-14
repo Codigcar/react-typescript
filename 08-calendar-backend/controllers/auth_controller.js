@@ -1,9 +1,13 @@
-const express = require('express');
+const express = require("express");
+const Usuario = require("../models/usuario_model");
 
-const crearUsuario = (req,res = express.response) => {
-
-    const {name, email, password} = req.body;
+const crearUsuario = async (req, res = express.response) => {
+  try {
+    const { name, email, password } = req.body;
     // console.log(req);
+
+    const usuario = new Usuario(req.body);
+    await usuario.save();
 
     // if ( name.length < 5 ) {
     //     return res.status(400).json({
@@ -12,37 +16,43 @@ const crearUsuario = (req,res = express.response) => {
     //     })
     // }
 
-
     res.status(201).json({
-        ok:true,
-        msg: 'registro22',
-        name: name,
-        email: email,
-        password, password
+      ok: true,
+      msg: "registro22",
+      name: name,
+      email: email,
+      password,
+      password,
+    });
+  } catch (error) {
+      console.log('Error /new: ', error);
+      res.status(500).json({
+          ok: false,
+          msg: 'Contactar con el admin'
       });
-}
+  }
+};
 
 const loginUsuario = (req, res = express.response) => {
-    const {email, password} = req.body;
+  const { email, password } = req.body;
 
-    res.json({
-        ok:true,
-        msg: 'login',
-        email,
-        password
-    })
-}
+  res.json({
+    ok: true,
+    msg: "login",
+    email,
+    password,
+  });
+};
 
 const revalidarToken = (req, resp = express.response) => {
-    res.json({
-        ok:true,
-        msg:'renew'
-    })
-}
+  res.json({
+    ok: true,
+    msg: "renew",
+  });
+};
 
-
-  module.exports = {
-      crearUsuario,
-      loginUsuario,
-      revalidarToken
-  }
+module.exports = {
+  crearUsuario,
+  loginUsuario,
+  revalidarToken,
+};
