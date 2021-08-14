@@ -5,6 +5,7 @@ const {check} = require('express-validator');
 const router = Router();
 
 const { crearUsuario, loginUsuario, revalidarToken } = require('../controllers/auth_controller');
+const { validarCamposLanzandoElErrorMiddleware } = require('../middlewares/validar-campos');
 
 
 /* app */router.get("/", (req, res) => {
@@ -24,6 +25,7 @@ router.post('/new',[
   check('name','El nombre es obligatorio').not().isEmpty(),
   check('email','El email es obligatorio').isEmail(),
   check('password','El password debe ser de minimo 4 caracteres').isLength({min:4}),
+  validarCamposLanzandoElErrorMiddleware
 ], crearUsuario);
 
 // router.post('/', (req,res) => {
@@ -35,6 +37,7 @@ router.post('/new',[
 router.post('/',[
   check('email','El email es obligatorio').isEmail(),
   check('password','El password debe ser de minimo 4 caracteres').isLength({min:4}),
+  validarCamposLanzandoElErrorMiddleware
 ], loginUsuario)
 
 // router.get('/renew', (req,res) => {
@@ -43,7 +46,9 @@ router.post('/',[
 //     msg: 'renew'
 //   })
 // })
-router.get('/renew', revalidarToken)
+router.get('/renew',[
+  
+], revalidarToken)
 
 
 
