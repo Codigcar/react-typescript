@@ -6,6 +6,7 @@ const router = Router();
 
 const { crearUsuario, loginUsuario, revalidarToken } = require('../controllers/auth_controller');
 const { validarCamposLanzandoElErrorMiddleware } = require('../middlewares/validar-campos');
+const { validatJWT } = require('../middlewares/validar-jwt');
 
 
 /* app */router.get("/", (req, res) => {
@@ -46,9 +47,7 @@ router.post('/',[
 //     msg: 'renew'
 //   })
 // })
-router.get('/renew',[
-  
-], revalidarToken)
+router.get('/renew',validatJWT, revalidarToken)
 
 
 
