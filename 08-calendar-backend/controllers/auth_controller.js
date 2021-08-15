@@ -1,12 +1,14 @@
 const express = require("express");
 const Usuario = require("../models/usuario_model");
+// @npm i bcryptjs
+const bcrypt = require('bcryptjs');
 
 const crearUsuario = async (req, res = express.response) => {
   try {
     const { name, email, password } = req.body;
     // console.log(req);
 
-    // Funcion FindOne
+    // Funcion FindOne para buscar en la BD si existe el email
     let usuario = await Usuario.findOne({email: email});
 
     if(usuario) {
@@ -17,6 +19,12 @@ const crearUsuario = async (req, res = express.response) => {
     }
 
     usuario = new Usuario(req.body);
+
+    // encriptar password
+    const salt = bcrypt.genSaltSync();
+    usuario.password = bcrypt.hashSync(password, salt);
+    // -- encriptar password
+
     await usuario.save();
 
     // if ( name.length < 5 ) {
