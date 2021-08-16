@@ -34,6 +34,7 @@ app.use(express.json()); /* middleware */
 //   })
 // });
 app.use('/api/auth', require('./routes/auth'));
+app.use('/api/events', require('./routes/events'));
 // end-- Rutas
 
 
