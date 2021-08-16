@@ -1,5 +1,7 @@
 const {Router} = require('express');
+const { check } = require('express-validator');
 const { getEventos, crearEvento, actualizarEvento, eliminarEvento } = require('../controllers/events_controller');
+const { validarCamposLanzandoElErrorMiddleware } = require('../middlewares/validar-campos');
 const router = Router();
 
 // middleware
@@ -12,7 +14,11 @@ router.use(validatJWT);
 router.get('/', getEventos);
 
 // Crear un nuevo evento
-router.post('/', crearEvento);
+router.post('/', [
+    check('title', 'El titulo es obligatorio').not().isEmpty(),
+    check('start','Fecha de inicio es obligatorio').custom(isDate),
+    validarCamposLanzandoElErrorMiddleware
+], crearEvento);
 
 // Actualizar evento
 router.put('/:id', actualizarEvento);
