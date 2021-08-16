@@ -33,8 +33,8 @@ app.use(express.json()); /* middleware */
 //       ok:true
 //   })
 // });
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/events', require('./routes/events'));
+app.use('/api/auth', require('./routes/auth_router'));
+app.use('/api/events', require('./routes/events_router'));
 // end-- Rutas
 
 
