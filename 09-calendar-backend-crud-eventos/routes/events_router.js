@@ -1,6 +1,7 @@
 const {Router} = require('express');
 const { check } = require('express-validator');
 const { getEventos, crearEvento, actualizarEvento, eliminarEvento } = require('../controllers/events_controller');
+const { isDate } = require('../helper/isDate');
 const { validarCamposLanzandoElErrorMiddleware } = require('../middlewares/validar-campos');
 const router = Router();
 
