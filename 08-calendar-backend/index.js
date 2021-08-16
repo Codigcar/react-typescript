@@ -3,6 +3,7 @@ const express = require("express");
 // traer variables de entornos
 require('dotenv').config();
 const { dbConnection } = require("./database/config");
+const cors = require('cors');
 
 // console.log(process.env);
 
@@ -12,6 +13,8 @@ const app = express();
 // conexión Base de datos con MongoBD Atlas
 dbConnection();
 
+// CORS
+app.use(cors());
 
 // Directorio pubico
 // Reemplazo de 'Rutas' x un Directorio Público
