@@ -25,6 +25,11 @@ const EventoSchema = Schema({
     }
 });
 
-
+// quitar el "_id" y "_v" del JSON que se muestra en el postman, más no configura para la BD
+EventoSchema.method('toJSON', function(){
+    const { __v, _id, ...object } = this.toObject();
+    object.id = _id;
+    return object;
+})
 
 module.exports = model('Evento', EventoSchema);
