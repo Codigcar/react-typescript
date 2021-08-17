@@ -21,7 +21,7 @@ const validatJWT = (req, res, next) => {
     try {
         // validaciones del token 
         const payload = jwt.verify(token, process.env.SECRET_JWT_SEED)
-        console.log('payload: ', payload);
+        console.log('payload JWT: ', payload);
 
         req.uid = payload.uid;
         req.name = payload.name;
