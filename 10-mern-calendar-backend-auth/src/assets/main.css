@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+    @apply py-2 px-4 rounded;
+}
+
+.btn-blue {
+    @apply bg-blue-500 text-white;
+}
+
+.btn-blue:hover {
+    @apply bg-blue-700;
+}
+
+.card {
+    @apply rounded overflow-hidden shadow-lg;
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRhaWx3aW5kLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxjQUFjO0FBQ2Qsb0JBQW9CO0FBQ3BCLG1CQUFtQjs7QUFFbkI7SUFDSSx3QkFBd0I7QUFDNUI7O0FBRUE7SUFDSSw2QkFBNkI7QUFDakM7O0FBRUE7SUFDSSxrQkFBa0I7QUFDdEI7O0FBRUE7SUFDSSx3Q0FBd0M7QUFDNUMiLCJmaWxlIjoibWFpbi5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJAdGFpbHdpbmQgYmFzZTtcclxuQHRhaWx3aW5kIGNvbXBvbmVudHM7XHJcbkB0YWlsd2luZCB1dGlsaXRpZXM7XHJcblxyXG4uYnRuIHtcclxuICAgIEBhcHBseSBweS0yIHB4LTQgcm91bmRlZDtcclxufVxyXG5cclxuLmJ0bi1ibHVlIHtcclxuICAgIEBhcHBseSBiZy1ibHVlLTUwMCB0ZXh0LXdoaXRlO1xyXG59XHJcblxyXG4uYnRuLWJsdWU6aG92ZXIge1xyXG4gICAgQGFwcGx5IGJnLWJsdWUtNzAwO1xyXG59XHJcblxyXG4uY2FyZCB7XHJcbiAgICBAYXBwbHkgcm91bmRlZCBvdmVyZmxvdy1oaWRkZW4gc2hhZG93LWxnO1xyXG59Il19 */
