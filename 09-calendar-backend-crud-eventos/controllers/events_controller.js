@@ -1,10 +1,19 @@
 const { response } = require("express");
 const Evento = require("../models/evento_model");
 
-const getEventos = (req, res = response) => {
+const getEventos = async(req, res = response) => {
+
+  // traer todos los events de la BD
+  const eventos = await Evento.find()
+                              // .populate('user'); 
+                              // // populate permite no solo traer el id del usuario sino sus demas campos del user
+                              .populate('user', 'name password'); 
+                              // definir 'name', solo quiere decir que traiga el name del user
+
   res.status(200).json({
     ok: true,
     msg: "getEventos",
+    eventos
   });
 };
 
