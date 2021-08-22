@@ -30,7 +30,7 @@ const validatJWT = (req, res, next) => {
         console.log('Token no valido: ', error);
         return res.status(401).json({
             ok: false,
-            mnsg: 'Token no valido'
+            msg: 'Token no valido'
         })
     }
 
