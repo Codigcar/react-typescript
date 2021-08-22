@@ -9,8 +9,11 @@ export enum actionTypes {
     eventUpdated = '[event] Event updated',
     eventDeleted = '[event] Event deleted',
 
-    authChecking = '[auth] Checking login state',
+    // authChecking = '[auth] Checking login state',
+
+    // cambiar el ckecking a false, para verificar si hay token almacenado 
     authCheckingFinish ='[auth] Finish checking login state',
+
     authStartLogin ='[auth] Start login',
     authStartRegister ='[auth] Start Register',
     authStartTokenREnew ='[auth] Start token renew',

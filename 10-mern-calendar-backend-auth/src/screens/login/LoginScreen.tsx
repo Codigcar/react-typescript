@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { useForm } from '../../hooks/useForm'
-import { startLoginAction, startRegister } from '../../redux/actions/authActions';
+import { startLoginAction, startRegisterAction } from '../../redux/actions/authActions';
 
 interface FormDataLogin {
     loginEmail: string,
@@ -48,7 +48,7 @@ export const LoginScreen = () => {
     const handleRegisterSubmit = (e: any) => {
         e.preventDefault();
         // console.log('formulario: ',formulario);
-        dispatch(startRegister(registerEmail, registerPassword1, registerName));
+        dispatch(startRegisterAction(registerEmail, registerPassword1, registerName));
         // console.log('hola');
         
     }

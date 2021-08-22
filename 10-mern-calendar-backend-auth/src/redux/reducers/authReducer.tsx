@@ -1,8 +1,8 @@
 import { actionTypes } from '../types/type';
 
 export type AuthAction = 
-| {type: actionTypes.uiOpenModal }
 | {type: actionTypes.authLogin, payload: {uid: string, name:string} }
+| {type: actionTypes.authCheckingFinish, payload: {email: string, password:string, name:string} }
 
 export interface AuthState {
     checking: boolean
@@ -20,6 +20,11 @@ export const authReducer = (state:AuthState = initialState, action: AuthAction):
                 ...state,
                 checking: false,
                 ...action.payload
+            }
+        case actionTypes.authCheckingFinish:
+            return {
+                ...state,
+                checking: false
             }
 
         default:
