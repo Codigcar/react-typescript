@@ -3,6 +3,7 @@ import { actionTypes } from '../types/type';
 export type AuthAction = 
 | {type: actionTypes.authLogin, payload: {uid: string, name:string} }
 | {type: actionTypes.authCheckingFinish, payload: {email: string, password:string, name:string} }
+| {type: actionTypes.authLogout}
 
 export interface AuthState {
     checking: boolean
@@ -25,6 +26,10 @@ export const authReducer = (state:AuthState = initialState, action: AuthAction):
             return {
                 ...state,
                 checking: false
+            }
+        case actionTypes.authLogout:
+            return {
+                checking:false
             }
 
         default:

@@ -63,6 +63,13 @@ export const startCheckingAction = () => {
     }
 }
 
+export const startLogoutAction = () => {
+    return (dispatch: any) => {
+        localStorage.clear();
+        dispatch(logout());
+    }
+}
+
 const checkingFinish = () => {
     return {
         type: actionTypes.authCheckingFinish
@@ -75,6 +82,8 @@ const login = (user: any) => {
         payload: user
     }
 }
+
+const logout = () => ({type: actionTypes.authLogout})
 
 // const register = (user:any) => {
 //     return {

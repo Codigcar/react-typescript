@@ -42,7 +42,7 @@ const crearUsuario = async (req, res = express.response) => {
     res.status(201).json({
       ok: true,
       msg: "Usuario registrado con exito",
-      uid: usuario.uid,
+      uid: usuario.id,
       name: usuario.name,
       email: usuario.email,
       password: usuario.password,
