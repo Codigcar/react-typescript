@@ -6,7 +6,7 @@ import { Navbar } from '../../components/ui/Navbar';
 import { messages } from '../../helpers/calendar-idioma';
 import { CalendarEvent } from './CalendarEvent';
 import { useState } from 'react';
-import { CalendarModal, RootState } from './CalendarModal';
+import { CalendarModal } from './CalendarModal';
 
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'moment/locale/es';
@@ -16,6 +16,7 @@ import { eventSetActive, eventClearActiveEvent } from '../../redux/actions/event
 import { AddNewFab } from '../../components/ui/AddNewFab';
 import { EventState } from '../../redux/reducers/calendarReducer';
 import { DeleteEventFab } from '../../components/ui/DeleteEventFab';
+import { RootState } from '../../helpers/root-state';
 
 moment.locale('es');
 // Setup the localizer by providing the moment (or globalize) Object

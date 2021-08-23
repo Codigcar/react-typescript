@@ -11,6 +11,7 @@ import Swal from 'sweetalert2'
 import { useDispatch, useSelector } from 'react-redux';
 import { uiCloseModal } from '../../redux/actions/uiActions';
 import { eventAddNew, eventClearActiveEvent, eventUpdated } from '../../redux/actions/eventsActions';
+import { RootState } from '../../helpers/root-state';
 
 const customStyles = {
     content: {
@@ -30,15 +31,7 @@ const fechaTiempoAhora = moment().minutes(0).seconds(0).add(1, 'hours'); //11:00
 const fechaTiempoAhoraPlus1 = fechaTiempoAhora.clone().add(1,'hours');
 
 
-export interface RootState {
-    ui: {
-        modalOpen: boolean
-    },
-    calendar:{
-        events:any,
-        activeEvent:any
-    }
-}
+
 
 export const CalendarModal = () => {
 
