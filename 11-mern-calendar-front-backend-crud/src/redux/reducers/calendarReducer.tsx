@@ -52,6 +52,10 @@ const initialState:EventState = {
     ],
     activeEvent: null
 };
+// const initialState:EventState = {
+//     events: [],
+//     activeEvent: null
+// };
 
 export const calendarReducer = (state:EventState = initialState, action:CalendarActon ):EventState => {
     switch (action.type) {

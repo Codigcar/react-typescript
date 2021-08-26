@@ -24,6 +24,8 @@ export const eventStartAddNewForBackend = (event:any) => {
                     _id: parteDelSelector_Uid,
                     name: parteDelSelector_Name
                 }
+
+                dispatch(eventAddNewForRedux(event));
             }
 
         } catch (error) {
