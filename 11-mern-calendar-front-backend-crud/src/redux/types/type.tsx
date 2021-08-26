@@ -2,7 +2,8 @@
 export enum actionTypes {
     uiOpenModal= '[ui] Open modal',
     uiCloseModal = '[ui] Close modal',
-
+    
+    eventStartAddNew = '[event] Start add new',
     eventSetActive = '[event] Set Active',
     eventAddNew = '[event] Add new',
     eventClearActiveEvent = '[event] Clear ActiveEvent',
@@ -19,4 +20,6 @@ export enum actionTypes {
     authStartTokenREnew ='[auth] Start token renew',
     authLogin ='[auth] Login',
     authLogout ='[auth] Logout',
+
+
 }

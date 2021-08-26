@@ -10,7 +10,7 @@ import moment from 'moment';
 import Swal from 'sweetalert2'
 import { useDispatch, useSelector } from 'react-redux';
 import { uiCloseModal } from '../../redux/actions/uiActions';
-import { eventAddNew, eventClearActiveEvent, eventUpdated } from '../../redux/actions/eventsActions';
+import { eventClearActiveEvent, eventUpdated, eventStartAddNewForBackend } from '../../redux/actions/eventsActions';
 import { RootState } from '../../helpers/root-state';
 
 const customStyles = {
@@ -120,13 +120,16 @@ export const CalendarModal = () => {
             // crear un nuevo event
             
             // TODO: Realizar grabacion base de datos 
-            dispatch(eventAddNew({
+            dispatch(eventStartAddNewForBackend({
                 ...formValues,
-                id: new Date().getTime(),
-                user: {
-                    _id:'123',
-                    name:'Carlos'
-                }
+                // Data en duro, ya no será necesario
+              /*   
+                    id: new Date().getTime(),
+                    user: {
+                        _id:'123',
+                        name:'Carlos'
+                    } 
+                */
             }));
         }
 
