@@ -3,21 +3,28 @@ import { actionTypes } from '../types/type';
 import { fetchConToken } from '../../helpers/fetch';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../helpers/root-state';
+import { convertirEventosString_A_Date_FechaStartAndEnd } from '../../helpers/convertir-eventos';
 
 
 // En los Actions no se puede usar el 'useSelector', por lo que usar el 'getState'
 // const parteDelSelector_UIName= useSelector((state:RootState) => state.auth);
-export const eventStartAddNewForBackend = (event:any) => {
+export const eventStartAddNewForBackendAction = (event:any) => {
     return async(dispatch:any, getState:any) => {
         console.log('eventStartAddNew: ',event);
 
-        const {parteDelSelector_Name,parteDelSelector_Uid} = getState().auth;
+        const getStateStateRedux = getState().auth;
+        console.log('getState().auth: ', getState().auth);
 
+        const parteDelSelector_Uid  = getStateStateRedux.uid;
+        const parteDelSelector_Name  = getStateStateRedux.name;
+        
         try {
             const resp = await fetchConToken('events', event, 'POST');
             const body = await resp.json();
 
             console.log('Evento guardado en BD: ',body);
+            console.log('parteDelSelector_Uid: ',parteDelSelector_Uid);
+            console.log('parteDelSelector_Name: ',parteDelSelector_Name);
             if(body.ok){
                 event.id = body.EventCreated.id;
                 event.user = {
@@ -44,34 +51,34 @@ const eventAddNewForRedux = (event:any) => {
     }
 }
 
-export const eventSetActive = (event:any) => {
+export const eventSetActiveAction = (event:any) => {
     return {
         type: actionTypes.eventSetActive,
         payload: event
     }
 }
 
-export const eventClearActiveEvent = () => {
+export const eventClearActiveEventAction = () => {
     return {
         type: actionTypes.eventClearActiveEvent
     }
 }
 
-export const eventUpdated = (event:any) => {
+export const eventUpdatedAction = (event:any) => {
     return {
         type: actionTypes.eventUpdated,
         payload: event
     }
 }
 
-export const eventDeleted = () => {
+export const eventDeletedAction = () => {
     return {
         type: actionTypes.eventDeleted,
     }
 }
 
 // Para leer los eventos registrados en la BD
-export const eventStartLoading = () => {
+export const eventStartLoadingAction = () => {
     return async(dispatch:any) => {
         console.log('eventStartLoading');
         try {
@@ -80,9 +87,10 @@ export const eventStartLoading = () => {
 
             const eventsDB = body.eventos;
 
-            console.log('eventStartLoading: ',body);
-            dispatch(eventLoaded(eventsDB));
-            
+            const eventsDBConvertido = convertirEventosString_A_Date_FechaStartAndEnd(eventsDB);
+            console.log('Traer eventos de la BD (eventStartLoading): ',eventsDBConvertido);
+            dispatch(eventLoaded(eventsDBConvertido));
+
         } catch (error) {
             console.log('error_eventStartLoading', error);
         }

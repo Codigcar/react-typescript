@@ -12,7 +12,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'moment/locale/es';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiOpenModal } from '../../redux/actions/uiActions';
-import { eventSetActive, eventClearActiveEvent, eventStartLoading } from '../../redux/actions/eventsActions';
+import { eventSetActiveAction, eventClearActiveEventAction, eventStartLoadingAction } from '../../redux/actions/eventsActions';
 import { AddNewFab } from '../../components/ui/AddNewFab';
 import { EventState } from '../../redux/reducers/calendarReducer';
 import { DeleteEventFab } from '../../components/ui/DeleteEventFab';
@@ -40,20 +40,27 @@ export const CalendarScreen = () => {
     const dispatch = useDispatch();
     // extraer el evento del reduxState y mostrarlo, para ello el useState
     const myEventsList = useSelector((state:any) => state.calendar.events)
+    const parteSelector_uid = useSelector((state:RootState) => state.auth.uid);
 
     // Obtener el activeEvent del state
     const parteDelSelector_activeEvent = useSelector((state: RootState) => state.calendar.activeEvent);
 
     // Traer todos los eventos de la BD
     useEffect(() => {
-        dispatch(eventStartLoading());
+        dispatch(eventStartLoadingAction());
     }, [dispatch])
 
 
 
     const eventStyleGetter = (event: any, start:any, end:any, isSelected:any) => {
+
+        console.log('eventoAñadido: ',event);
+        console.log('parteSelector_uid: ',parteSelector_uid);
+        console.log('event.user._id: ',event.user._id);
+                
+
         const style = {
-            backgroundColor: 'red',
+            backgroundColor: (parteSelector_uid == event.user._id) ? '#376CF7' : 'green',
             borderRadius: '0px',
             opacity: 0.8,
             display: 'block'
@@ -70,7 +77,7 @@ export const CalendarScreen = () => {
 
     const onSelectEvent = (e:any) => {
         console.log('onSelectEvent: ',e);
-        dispatch(eventSetActive(e));
+        dispatch(eventSetActiveAction(e));
     }
 
     const onViewChange = (e:any) => {
@@ -81,7 +88,7 @@ export const CalendarScreen = () => {
 
     const onSelectSlot = (e:any) => {
         console.log('onSelectSlot: ', onSelectSlot);
-        dispatch(eventClearActiveEvent());
+        dispatch(eventClearActiveEventAction());
     }
 
 
@@ -112,7 +119,7 @@ export const CalendarScreen = () => {
             />
 
             <AddNewFab />
-            
+            <DeleteEventFab />
             {
                 (parteDelSelector_activeEvent) && <DeleteEventFab />
 

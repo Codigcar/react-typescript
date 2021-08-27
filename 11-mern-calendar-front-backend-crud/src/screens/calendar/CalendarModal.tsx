@@ -10,7 +10,7 @@ import moment from 'moment';
 import Swal from 'sweetalert2'
 import { useDispatch, useSelector } from 'react-redux';
 import { uiCloseModal } from '../../redux/actions/uiActions';
-import { eventClearActiveEvent, eventUpdated, eventStartAddNewForBackend } from '../../redux/actions/eventsActions';
+import { eventClearActiveEventAction, eventUpdatedAction, eventStartAddNewForBackendAction } from '../../redux/actions/eventsActions';
 import { RootState } from '../../helpers/root-state';
 
 const customStyles = {
@@ -52,7 +52,7 @@ export const CalendarModal = () => {
         // setIsOpen(false);
         dispatch(uiCloseModal());
         // volver null el activeEvent
-        dispatch(eventClearActiveEvent());
+        dispatch(eventClearActiveEventAction());
         setFormValues(initEvent);
     }
 
@@ -115,12 +115,12 @@ export const CalendarModal = () => {
         // EDITAR: validar si el activeEvent:null (crear nuevo), si tiene data es editar 
         if (parteDelSelector_activeEvent){
             // editar un event
-            dispatch(eventUpdated(formValues));
+            dispatch(eventUpdatedAction(formValues));
         } else {
             // crear un nuevo event
             
             // TODO: Realizar grabacion base de datos 
-            dispatch(eventStartAddNewForBackend({
+            dispatch(eventStartAddNewForBackendAction({
                 ...formValues,
                 // Data en duro, ya no será necesario
               /*   
