@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import moment from 'moment';
 
 import { Calendar, momentLocalizer } from 'react-big-calendar'
@@ -12,7 +12,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'moment/locale/es';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiOpenModal } from '../../redux/actions/uiActions';
-import { eventSetActive, eventClearActiveEvent } from '../../redux/actions/eventsActions';
+import { eventSetActive, eventClearActiveEvent, eventStartLoading } from '../../redux/actions/eventsActions';
 import { AddNewFab } from '../../components/ui/AddNewFab';
 import { EventState } from '../../redux/reducers/calendarReducer';
 import { DeleteEventFab } from '../../components/ui/DeleteEventFab';
@@ -44,7 +44,10 @@ export const CalendarScreen = () => {
     // Obtener el activeEvent del state
     const parteDelSelector_activeEvent = useSelector((state: RootState) => state.calendar.activeEvent);
 
-
+    // Traer todos los eventos de la BD
+    useEffect(() => {
+        dispatch(eventStartLoading());
+    }, [dispatch])
 
 
 

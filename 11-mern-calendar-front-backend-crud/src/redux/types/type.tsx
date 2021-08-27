@@ -9,7 +9,7 @@ export enum actionTypes {
     eventClearActiveEvent = '[event] Clear ActiveEvent',
     eventUpdated = '[event] Event updated',
     eventDeleted = '[event] Event deleted',
-
+    eventLoaded = '[event] Events loaded',
     // authChecking = '[auth] Checking login state',
 
     // cambiar el ckecking a false, para verificar si hay token almacenado 

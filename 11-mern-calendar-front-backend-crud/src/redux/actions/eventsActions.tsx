@@ -69,3 +69,29 @@ export const eventDeleted = () => {
         type: actionTypes.eventDeleted,
     }
 }
+
+// Para leer los eventos registrados en la BD
+export const eventStartLoading = () => {
+    return async(dispatch:any) => {
+        console.log('eventStartLoading');
+        try {
+            const resp = await fetchConToken('events');
+            const body = await resp.json();
+
+            const eventsDB = body.eventos;
+
+            console.log('eventStartLoading: ',body);
+            dispatch(eventLoaded(eventsDB));
+            
+        } catch (error) {
+            console.log('error_eventStartLoading', error);
+        }
+    }
+}
+
+const eventLoaded = (events:any) => {
+   return {
+    type: actionTypes.eventLoaded,
+    payload: events
+   }
+}

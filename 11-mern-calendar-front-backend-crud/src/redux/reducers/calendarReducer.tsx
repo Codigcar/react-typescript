@@ -18,6 +18,7 @@ export type CalendarActon =
 | {type:actionTypes.eventClearActiveEvent }
 | {type:actionTypes.eventUpdated, payload: any }
 | {type:actionTypes.eventDeleted, payload: any }
+| {type:actionTypes.eventLoaded, payload: any }
 
 export interface EventState {
     events: {
@@ -98,6 +99,14 @@ export const calendarReducer = (state:EventState = initialState, action:Calendar
                     e => (e.id !== state.activeEvent.id)
                 ),
             }
+
+        // Leer los eventos de la BD
+        case actionTypes.eventLoaded:
+            return {
+                ...state,
+                events:[...action.payload]
+            }
+
         default:
             return state;
     }
