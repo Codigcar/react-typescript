@@ -4,6 +4,7 @@ import { fetchConToken } from '../../helpers/fetch';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../helpers/root-state';
 import { convertirEventosString_A_Date_FechaStartAndEnd } from '../../helpers/convertir-eventos';
+import Swal from 'sweetalert2';
 
 
 // En los Actions no se puede usar el 'useSelector', por lo que usar el 'getState'
@@ -64,13 +65,37 @@ export const eventClearActiveEventAction = () => {
     }
 }
 
-export const eventUpdatedAction = (event:any) => {
+// Actualizar evento Back
+
+export const eventStartUpdateActionFromBack = (event:any) => {
+    return async(dispatch:any) => {
+
+        try {
+            const resp = await fetchConToken(`events/${event.id}`, event, 'PUT');
+            const body = await resp.json();
+
+            if (body.ok){
+                dispatch(eventUpdatedAction(event));
+            } else {
+                Swal.fire('Error', body.msg, 'error');
+            }
+            
+        } catch (error) {
+          console.log('error_eventStartUpdated: ', error);
+            
+        }
+
+    }
+}
+// Actualizar evento Front Redux
+const eventUpdatedAction = (event:any) => {
     return {
         type: actionTypes.eventUpdated,
         payload: event
     }
 }
 
+// // --- End Actualizar
 export const eventDeletedAction = () => {
     return {
         type: actionTypes.eventDeleted,
@@ -103,3 +128,5 @@ const eventLoaded = (events:any) => {
     payload: events
    }
 }
+
+
