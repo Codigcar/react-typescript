@@ -12,6 +12,10 @@ export enum actionTypes {
     eventLoaded = '[event] Events loaded',
     // authChecking = '[auth] Checking login state',
 
+    // Limpiar eventos
+    eventCleanLogout= '[event] Clean Logout event',
+
+
     // cambiar el ckecking a false, para verificar si hay token almacenado 
     authCheckingFinish ='[auth] Finish checking login state',
 

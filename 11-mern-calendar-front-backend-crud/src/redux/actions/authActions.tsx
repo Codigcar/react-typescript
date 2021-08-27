@@ -2,6 +2,7 @@ import React from 'react'
 import Swal from 'sweetalert2';
 import { fetchConToken, fetchSinToken } from '../../helpers/fetch';
 import { actionTypes } from '../types/type';
+import { eventCleanLogoutAction } from './eventsActions';
 
 export const startLoginAction = (email: string, password: string) => {
 
@@ -44,6 +45,13 @@ export const startRegisterAction = (email:string, password: string, name:string 
     }
 }
 
+const login = (user: any) => {
+    return {
+        type: actionTypes.authLogin,
+        payload: user
+    }
+}
+
 export const startCheckingAction = () => {
     return async(dispatch:any) => {
         const resp = await fetchConToken('auth/renew');
@@ -63,27 +71,26 @@ export const startCheckingAction = () => {
     }
 }
 
-export const startLogoutAction = () => {
-    return (dispatch: any) => {
-        localStorage.clear();
-        dispatch(logout());
-    }
-}
-
 const checkingFinish = () => {
     return {
         type: actionTypes.authCheckingFinish
     }
 }
 
-const login = (user: any) => {
-    return {
-        type: actionTypes.authLogin,
-        payload: user
+export const startLogoutAction = () => {
+    return (dispatch: any) => {
+        localStorage.clear();
+        dispatch(eventCleanLogoutAction());
+        dispatch(logout());
     }
 }
 
 const logout = () => ({type: actionTypes.authLogout})
+
+
+
+
+
 
 // const register = (user:any) => {
 //     return {

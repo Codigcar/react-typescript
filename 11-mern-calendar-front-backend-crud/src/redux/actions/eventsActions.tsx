@@ -159,3 +159,10 @@ const eventLoaded = (events:any) => {
 }
 
 
+// Clean Events 'activeEvent' al logout
+
+export const eventCleanLogoutAction = () => {
+    return {
+        type:actionTypes.eventCleanLogout
+    }
+}

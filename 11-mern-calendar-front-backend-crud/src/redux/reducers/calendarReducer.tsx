@@ -19,6 +19,7 @@ export type CalendarActon =
 | {type:actionTypes.eventUpdated, payload: any }
 | {type:actionTypes.eventDeleted, payload: any }
 | {type:actionTypes.eventLoaded, payload: any }
+| {type:actionTypes.eventCleanLogout}
 
 export interface EventState {
     events: {
@@ -105,6 +106,12 @@ export const calendarReducer = (state:EventState = initialState, action:Calendar
             return {
                 ...state,
                 events:[...action.payload]
+            }
+
+        // Clean 'activeEvent' al logout
+        case actionTypes.eventCleanLogout:
+            return {
+                ...initialState
             }
 
         default:
