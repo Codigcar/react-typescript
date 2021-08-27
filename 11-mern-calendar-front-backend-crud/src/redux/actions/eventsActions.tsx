@@ -96,11 +96,40 @@ const eventUpdatedAction = (event:any) => {
 }
 
 // // --- End Actualizar
-export const eventDeletedAction = () => {
+
+// Delete Evento DB
+
+export const eventStartDeleteFromBack = () => {
+    return async(dispatch:any, getState:any) => {
+
+        const {id} = getState().calendar.activeEvent;
+
+        try {
+            const resp = await fetchConToken(`events/${id}`,{}, 'DELETE');
+            const body = await resp.json();
+
+            if (body.ok){
+                dispatch(eventDeletedAction());
+            } else {
+                Swal.fire('Error', body.msg, 'error');
+            }
+            
+        } catch (error) {
+          console.log('error_eventStartDeleteFromBack: ', error);
+            
+        }
+    }
+}
+
+const eventDeletedAction = () => {
     return {
         type: actionTypes.eventDeleted,
     }
 }
+
+// --end
+
+
 
 // Para leer los eventos registrados en la BD
 export const eventStartLoadingAction = () => {

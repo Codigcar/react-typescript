@@ -119,7 +119,7 @@ export const CalendarScreen = () => {
             />
 
             <AddNewFab />
-            <DeleteEventFab />
+            {/* <DeleteEventFab /> */}
             {
                 (parteDelSelector_activeEvent) && <DeleteEventFab />
 
