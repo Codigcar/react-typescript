@@ -6,9 +6,10 @@ type Props = {
     value: any;
     onChange: any;
     type?: any;
+    error:any;
 }
 
-export const InputC = ({name, label, value, onChange, type}:Props) => {
+export const InputC = ({name, label, value, onChange, type, error=""}:Props) => {
     
     return (
             <TextField
@@ -22,6 +23,7 @@ export const InputC = ({name, label, value, onChange, type}:Props) => {
                 value={value}
                 onChange={onChange}
                 type={type}
+                {...(error && { error: true, helperText: error })}
             />
     )
 }
