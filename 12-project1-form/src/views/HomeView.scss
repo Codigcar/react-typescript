@@ -1,0 +1,21 @@
+.row {
+    // display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    
+}
+.column1 {
+    // flex-grow: 1;
+    // background: red;
+    
+}
+.column2 {
+    // flex-grow: 1;
+    // background: yellow;
+}
+.text-field{
+    width: 100%;
+    position: relative;
+    margin-top: 20px;
+}
+
