@@ -1,4 +1,5 @@
 export interface FormInterface {
+    id:string;
     mascota: string;
     propietario: string;
     fecha: string;
@@ -7,6 +8,7 @@ export interface FormInterface {
 }
 
 export const InitialStateCita: FormInterface = {
+    id:'',
     mascota: '',
     propietario: '',
     fecha: '',
