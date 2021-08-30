@@ -1,12 +1,22 @@
-import React, { Fragment } from 'react'
+import { Fragment } from 'react'
 import './HomeView.scss';
-import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
 import { useForm } from '../components/hooks/useForm'
+import { InputC } from '../components/comon/Input';
+import { Button } from '@material-ui/core';
+import { TextAreaC } from '../components/comon/TextArea';
+import { ButtonC } from '../components/comon/Button';
+
+type FormInterface = {
+    mascota: string;
+    propietario: string;
+    fecha: string;
+    hora: string;
+    sintomas: string;
+}
 
 export const HomeView = () => {
 
-    const { formulario, handleChange } = useForm<any>({
+    const { formulario, handleChange } = useForm<FormInterface>({
         mascota: '',
         propietario: '',
         fecha: '',
@@ -16,7 +26,7 @@ export const HomeView = () => {
 
     const { mascota, propietario, fecha, hora, sintomas } = formulario;
 
-  
+
 
     const submit = (e: any) => {
         e.preventDefault();
@@ -30,59 +40,38 @@ export const HomeView = () => {
             <div className="row">
                 <div className="column1">
                     <form onSubmit={submit}>
-                        <TextField
-                            id="outlined-basic"
+                        <InputC
                             label="Nombres Mascota"
-                            variant="outlined"
-                            className="text-field"
-                            autoComplete="off"
-                            style={{ marginBottom: 20 }}
                             name="mascota"
                             value={mascota}
                             onChange={handleChange}
                         />
-                        <TextField
-                            id="outlined-basic"
+                        <InputC
                             label="Nombres Dueño"
-                            variant="outlined"
-                            className="text-field"
-                            autoComplete="off"
-                            style={{ marginBottom: 20 }}
                             name="propietario"
                             value={propietario}
                             onChange={handleChange}
                         />
-                        <TextField
-                            id="outlined-basic"
-                            type="date"
-                            variant="outlined"
-                            className="text-field"
-                            autoComplete="off"
-                            style={{ marginBottom: 20 }}
+                        <InputC
                             name="fecha"
                             value={fecha}
                             onChange={handleChange}
-
+                            type="date"
                         />
-                        <TextField
-                            id="outlined-basic"
-                            type="time"
-                            variant="outlined"
-                            className="text-field"
-                            autoComplete="off"
-                            style={{ marginBottom: 20 }}
+                        <InputC
                             name="hora"
                             value={hora}
                             onChange={handleChange}
+                            type="time"
                         />
-                        <Button
-                            type="submit"
-                            variant="contained"
-                            color="primary"
-                            style={{ width: "100%" }}
-                        >
-                            Agregar Ctia
-                        </Button>
+                        <TextAreaC
+                            name="sintomas"
+                            value={sintomas}
+                            onChange={handleChange}
+                        />
+
+                        <ButtonC title="Agregar Cita" />
+
                     </form>
                 </div>
                 <div className="column2">

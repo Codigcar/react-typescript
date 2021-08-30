@@ -1,4 +1,4 @@
-import { Button, CssBaseline } from '@material-ui/core'
+import { CssBaseline } from '@material-ui/core'
 // import styles from './App.module.scss';
 import { HomeView } from './views/HomeView';
 import './App.scss';
