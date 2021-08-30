@@ -8,13 +8,18 @@ export const App = () => {
   const theme = createTheme({
     palette: {
       type: "dark",
+      primary:{
+        main: '#FFCA28'
+      }
     }
   });
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <HomeView />
+      <div className="container">
+        <HomeView />
+      </div>
     </ThemeProvider>
   )
 }

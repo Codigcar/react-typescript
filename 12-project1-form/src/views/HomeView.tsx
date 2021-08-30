@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { CitasLayout } from '../components/layout/CitasLayout';
 import { FormLayout } from '../components/layout/FormLayout';
 import './HomeView.scss';
@@ -7,12 +7,29 @@ import './HomeView.scss';
 
 export const HomeView = () => {
 
-    const [citas, setCita] = useState<any>([]);
+    // Leyendo LocalStorage
+    let citasLocalStorage:any = JSON.parse(localStorage.getItem('citas') || '[]') ;
+    // console.log('citasLocalStorage: ',citasLocalStorage);
+    
+    if(citasLocalStorage === ''){
+        citasLocalStorage = [];
+    }
+
+    // Inicializar Arreglo de citas
+    const [citas, setCita] = useState<any>(citasLocalStorage);
+
+    // useEffect para realizar ciertas operaciones cuando el State cambia
+    useEffect(() => {
+        if(citasLocalStorage){
+            localStorage.setItem('citas', JSON.stringify(citas));
+        } else {
+            localStorage.setItem('citas', JSON.stringify([]));
+        }
+    }, [citas, citasLocalStorage])
 
     const crearCita = (newCita:any) => {
         setCita([...citas, newCita])
     }
-    // console.log('Citas: ', cita);
 
     // Funcion que elimina uan cita por su id
     const eliminarCita = (id:string) => {
@@ -20,6 +37,9 @@ export const HomeView = () => {
         const citasFiltrada = citas.filter((cita:any) => cita.id !== id);
         setCita(citasFiltrada);
     }
+
+    // Mensaje adicional
+    const titulo = citas.length === 0 ? 'No hay citas registradas': 'Visualia todas tus citas';
 
     
     return (
@@ -33,7 +53,7 @@ export const HomeView = () => {
                     />
                 </div>
                 <div className="column2">
-                    <h1>Visualia tus Citas registradas</h1>
+                    <h1>{titulo}</h1>
                     {
                         citas.map((cita:any) => (
                             <CitasLayout 
