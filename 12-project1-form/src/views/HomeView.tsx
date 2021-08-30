@@ -7,17 +7,18 @@ import './HomeView.scss';
 
 export const HomeView = () => {
 
-    const [cita, setCita] = useState<any>([]);
+    const [citas, setCita] = useState<any>([]);
 
     const crearCita = (newCita:any) => {
-        setCita([...cita, newCita])
+        setCita([...citas, newCita])
     }
     // console.log('Citas: ', cita);
 
     // Funcion que elimina uan cita por su id
     const eliminarCita = (id:string) => {
         console.log('eliminarCita: ',id);
-        
+        const citasFiltrada = citas.filter((cita:any) => cita.id !== id);
+        setCita(citasFiltrada);
     }
 
     
@@ -34,9 +35,9 @@ export const HomeView = () => {
                 <div className="column2">
                     <h1>Visualia tus Citas registradas</h1>
                     {
-                        cita.map((cita:any,i:any) => (
+                        citas.map((cita:any) => (
                             <CitasLayout 
-                                key={i} 
+                                key={cita.id} 
                                 cita={cita} 
                                 eliminarCita={eliminarCita}
                             />
