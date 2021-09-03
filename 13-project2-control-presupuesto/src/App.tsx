@@ -6,7 +6,7 @@ import { CssBaseline, Switch } from '@material-ui/core'
 
 export const App = () => {
 
-  const [modeDark, setModeDark] = useState(false);
+  const [modeDark, setModeDark] = useState(true);
 
   const theme = createTheme({
     palette: {
@@ -20,11 +20,9 @@ export const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-
       <Switch 
         onClick={() => setModeDark(!modeDark) }
       />
-
       <div className="container">
         <HomeView />
       </div>
