@@ -5,85 +5,65 @@ import { ButtonC } from '../comon/Button';
 import { FormInterface, InitialStateCita, PropsFormLayout } from '../../consts/interfaces';
 // npm i --save-dev @types/uuid
 import { v4 as uuidv4 } from 'uuid';
+import { useContext } from 'react';
+import { GlobalContext } from '../../stateManagement/context/GlobalContext';
 
 
 
-export const FormLayout = ({crearCita}:PropsFormLayout) => {
+export const FormLayout = (/* {crearCita}:PropsFormLayout */) => {
+
+    const context = useContext(GlobalContext);
+    console.log('context formlayout: ', context);
+    
 
     // Form
     const { formulario, handleChange, errors, setErrors } = useForm<FormInterface>(InitialStateCita);
-    const { mascota, propietario, fecha, hora, sintomas } = formulario;
+    const { title, description } = formulario;
 
     // Validar errores
     const validate = (fieldValues = formulario) => {
         let temp = { ...errors }
-        if ('mascota' in fieldValues)
-            temp.mascota = fieldValues.mascota.trim() ? "" : "This field is required"
-        if ('propietario' in fieldValues)
-            temp.propietario = fieldValues.propietario.trim() ? "" : "This field is required"
-        if ('fecha' in fieldValues)
-            temp.fecha = fieldValues.fecha.trim() ? "" : "This field is required"
-        if ('hora' in fieldValues)
-            temp.hora = fieldValues.hora.trim() ? "" : "This field is required"
-        if ('sintomas' in fieldValues)
-            temp.sintomas = fieldValues.sintomas.trim() ? "" : "This field is required"
+        if ('title' in fieldValues)
+            temp.title = fieldValues.title.trim() ? "" : "This field is required"
+       
         setErrors({
             ...temp
         })
+        // console.log('temp: ', temp);
+        
         if (fieldValues === formulario)
-            return Object.values(temp).every(x => x === "")
+            return Object.values(temp).every(x =>{ console.log('x: ',x);
+             return (x === "" || x === false)})
     }
 
     // Submit
     const submit = (e: any) => {
         e.preventDefault();
-        console.log('vacio');
+        // console.log('vacio');
 
         if (validate()) {
             console.log('submit');
-            
             formulario.id = uuidv4();
-            crearCita(formulario)
-            // console.log(formulario);
+            // crearCita(formulario)
+            console.log(formulario);
             
         }
     }
 
     return (
-        <form onSubmit={submit}>
+        <form onSubmit={submit} className="flex flex-col items-center ">
             <InputC
-                label="Nombres Mascota"
-                name="mascota"
-                value={mascota}
+                label="title"
+                name="title"
+                value={title}
                 onChange={handleChange}
-                error={errors.mascota}
-            />
-            <InputC
-                label="Nombres Dueño"
-                name="propietario"
-                value={propietario}
-                onChange={handleChange}
-                error={errors.propietario}
-            />
-            <InputC
-                name="fecha"
-                value={fecha}
-                onChange={handleChange}
-                type="date"
-                error={errors.fecha}
-            />
-            <InputC
-                name="hora"
-                value={hora}
-                onChange={handleChange}
-                type="time"
-                error={errors.hora}
+                error={errors.title}
             />
             <TextAreaC
-                name="sintomas"
-                value={sintomas}
+                name="description"
+                value={description}
                 onChange={handleChange}
-                error={errors.sintomas}
+                error={errors.description}
             />
 
             <ButtonC title="Agregar Cita" />

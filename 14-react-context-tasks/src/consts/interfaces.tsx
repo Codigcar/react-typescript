@@ -1,19 +1,15 @@
 export interface FormInterface {
     id:string;
-    mascota: string;
-    propietario: string;
-    fecha: string;
-    hora: string;
-    sintomas: string;
+    title: string;
+    description: string;
+    done: boolean; 
 }
 
 export const InitialStateCita: FormInterface = {
     id:'',
-    mascota: '',
-    propietario: '',
-    fecha: '',
-    hora: '',
-    sintomas: ''
+    title: '',
+    description: '',
+    done: false,
 }
 
 export interface PropsFormLayout {

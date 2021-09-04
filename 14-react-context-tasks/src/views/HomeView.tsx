@@ -1,9 +1,9 @@
 import React from 'react'
-import { Heading } from '../components/layout/Heading'
 import './HomeView.scss'
+import { TaskList } from '../components/layout/TaskList';
 
 export const HomeView = () => {
     return (
-        <h1>HomeView</h1>
+        <TaskList />
     )
 }

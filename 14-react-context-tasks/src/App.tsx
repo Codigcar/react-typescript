@@ -1,17 +1,15 @@
 import React, { useState } from 'react'
 import './App.scss'
-import { HomeView } from './views/HomeView';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { CssBaseline, Switch } from '@material-ui/core'
 
-import { BrowserRouter } from 'react-router-dom';
+// import { BrowserRouter } from 'react-router-dom';
 import { AppRouter } from './routes/AppRouter';
 import './tailwind.css';
-import { LoginView } from './views/LoginView';
 
 export const App = () => {
 
-  const [modeDark, setModeDark] = useState(false);
+  const [modeDark, setModeDark] = useState(true);
 
   const theme = createTheme({
     palette: {

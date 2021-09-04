@@ -6,6 +6,7 @@ export const useForm = <T extends Object>(initialState: T) => {
     const [errors, setErrors] = useState(initialState);
 
     const handleChange = (ev: ChangeEvent<HTMLInputElement>) => {
+
         setFormulario({
             ...formulario,
             [ev.target.name]: ev.target.value

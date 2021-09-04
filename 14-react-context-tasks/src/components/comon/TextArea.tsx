@@ -13,7 +13,7 @@ export const TextAreaC = ({name, value,onChange, error=""}:Props) => {
             aria-label="minimum height"
             minRows={5}
             placeholder="Escribe tu consulta..."
-            style={{ width: "100%" }}
+            style={{ width: "80%", color:'black' }}
             name={name}
             value={value}
             onChange={onChange}
