@@ -1,5 +1,4 @@
 import { createContext, useReducer } from 'react';
-import { FormInterface, InitialStateCita } from '../../consts/interfaces';
 import addReducer from './AppReducer';
 
 // const initialState = {count:0}
@@ -37,12 +36,21 @@ export const ContextProvider = ({ children }: any) => {
         dispatch({ type: 'ADD_TYPE', payload: taskNew });
     }
 
-    const deleteTask = () => {
+    const deleteAllTask = () => {
         dispatch({type:'DELETE_TYPE'});
+    }
+    const deleteTask = (id: any) => {
+        dispatch({type:'DELETE_BY_ID_TYPE', payload: id});
+    }
+    const updateTask = (task:any) => {
+        dispatch({type: 'UPDATE_TASK',payload: task})
+    }
+    const toggleTaskDone = (id:any) => {
+        dispatch({type: 'TOGGLE_TASK_DONE', payload: id})
     }
 
     return (
-        <GlobalContext.Provider value={{ ...state, addTask, deleteTask }}>
+        <GlobalContext.Provider value={{ ...state, addTask, deleteTask, deleteAllTask, updateTask,toggleTaskDone }}>
             {children}
         </GlobalContext.Provider>
     );

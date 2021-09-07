@@ -12,5 +12,5 @@ export const useForm = <T extends Object>(initialState: T) => {
             [ev.target.name]: ev.target.value
         });
     }
-    return { formulario, handleChange, errors, setErrors}
+    return { formulario, handleChange, errors, setErrors, setFormulario}
 }

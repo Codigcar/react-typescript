@@ -22,6 +22,7 @@ export const AppRouter = () => {
                         <Route path="/login" component={LoginView} />
                         <Route path="/" exact component={HomeView} />
                         <Route path="/add" exact component={AddTaskView} />
+                        <Route path="/edit/:id" exact component={AddTaskView} />
                     </Switch>
                 </ContextProvider>
             </div>

@@ -2,38 +2,58 @@ import { useForm } from '../hooks/useForm';
 import { InputC } from '../comon/Input';
 import { TextAreaC } from '../comon/TextArea';
 import { ButtonC } from '../comon/Button';
-import { FormInterface, InitialStateCita, PropsFormLayout } from '../../consts/interfaces';
+import { FormInterface, InitialStateCita } from '../../consts/interfaces';
 // npm i --save-dev @types/uuid
 import { v4 as uuidv4 } from 'uuid';
-import { useContext } from 'react';
+import { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import { GlobalContext } from '../../stateManagement/context/GlobalContext';
+
+import { useHistory, useParams } from 'react-router-dom';
+
+interface Params {
+    id: any;
+}
 
 
 
 export const FormLayout = (/* {crearCita}:PropsFormLayout */) => {
 
-    const {addTask} = useContext(GlobalContext);
-    // console.log('context formlayout: ', context);
-
+    const { addTask, tasks, updateTask } = useContext(GlobalContext);
+    // Enviara otra ruta
+    const historyRoute = useHistory();
+    // extraer el parametros
+    const params: Params = useParams();
 
     // Form
-    const { formulario, handleChange, errors, setErrors } = useForm<FormInterface>(InitialStateCita);
+    const { formulario, handleChange, errors, setErrors, setFormulario } = useForm(InitialStateCita);
     const { title, description } = formulario;
+
+    useEffect(() => {
+        const taskBD = tasks.find((task: any) => task.id === params.id);
+        if (taskBD) {
+            console.log('editing');
+            setFormulario(taskBD);
+        } else {
+            console.log('creating');
+        }
+    }, [params.id, tasks, setFormulario])
 
     // Validar errores
     const validate = (fieldValues = formulario) => {
         let temp = { ...errors }
         if ('title' in fieldValues)
             temp.title = fieldValues.title.trim() ? "" : "This field is required"
-       
+
         setErrors({
             ...temp
         })
         // console.log('temp: ', temp);
-        
+
         if (fieldValues === formulario)
-            return Object.values(temp).every(x =>{ console.log('x: ',x);
-             return (x === "" || x === false)})
+            return Object.values(temp).every(x => {
+                console.log('x: ', x);
+                return (x === "" || x === false)
+            })
     }
 
     // Submit
@@ -43,11 +63,17 @@ export const FormLayout = (/* {crearCita}:PropsFormLayout */) => {
 
         if (validate()) {
             console.log('submit');
-            formulario.id = uuidv4();
             // crearCita(formulario)
             console.log(formulario);
             // addTask({ id: formulario.id, title: 'nuevo' , description:'description'});
-            addTask(formulario);
+            if(params.id){
+                updateTask(formulario);
+            } else {
+                formulario.id = uuidv4();
+                addTask(formulario);
+            }
+
+            historyRoute.push('/');
         }
     }
 
