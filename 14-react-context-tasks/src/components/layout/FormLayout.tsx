@@ -12,9 +12,9 @@ import { GlobalContext } from '../../stateManagement/context/GlobalContext';
 
 export const FormLayout = (/* {crearCita}:PropsFormLayout */) => {
 
-    const context = useContext(GlobalContext);
-    console.log('context formlayout: ', context);
-    
+    const {addTask} = useContext(GlobalContext);
+    // console.log('context formlayout: ', context);
+
 
     // Form
     const { formulario, handleChange, errors, setErrors } = useForm<FormInterface>(InitialStateCita);
@@ -46,7 +46,8 @@ export const FormLayout = (/* {crearCita}:PropsFormLayout */) => {
             formulario.id = uuidv4();
             // crearCita(formulario)
             console.log(formulario);
-            
+            // addTask({ id: formulario.id, title: 'nuevo' , description:'description'});
+            addTask(formulario);
         }
     }
 
